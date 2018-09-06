@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mysql 索引结构 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="mysql">
+    <meta name="description" content="mysql 索引结构">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql 索引结构">
+<meta property="og:url" content="http://lj360560179.github.io/2018/07/19/mysql索引/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="mysql 索引结构">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/Inoodb.jpg">
+<meta property="og:image" content="http://ni484sha.com/images/MyISAM.jpg">
+<meta property="og:image" content="http://ni484sha.com/images/mysqljoin.jpg">
+<meta property="og:image" content="http://ni484sha.com/images/orderby.jpg">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql 索引结构">
+<meta name="twitter:description" content="mysql 索引结构">
+<meta name="twitter:image" content="http://ni484sha.com/images/Inoodb.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mysql 索引结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mysql 索引结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-19T04:34:14.000Z" itemprop="datePublished" class="page-time">
+  2018-07-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/db/">db</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Inoodb"><span class="post-toc-number">1.</span> <span class="post-toc-text">Inoodb</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MyISAM"><span class="post-toc-number">2.</span> <span class="post-toc-text">MyISAM</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Join"><span class="post-toc-number">3.</span> <span class="post-toc-text">Join</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OrderBy"><span class="post-toc-number">4.</span> <span class="post-toc-text">OrderBy</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GroupBy"><span class="post-toc-number">5.</span> <span class="post-toc-text">GroupBy</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Distinct"><span class="post-toc-number">6.</span> <span class="post-toc-text">Distinct</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-mysql索引"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mysql 索引结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-19 12:34:14" datetime="2018-07-19T04:34:14.000Z"  itemprop="datePublished">2018-07-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/db/">db</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>mysql 索引结构<br><a id="more"></a></p>
+<h3 id="Inoodb"><a href="#Inoodb" class="headerlink" title="Inoodb"></a>Inoodb</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/Inoodb.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>优化原则：</p>
+<ul>
+<li>永远用小结果集驱动大结果集</li>
+<li>只取出自己需要的字段(1.数据量 2.排序占用)</li>
+<li>使用最有效的过滤条件</li>
+<li>避免复杂的查询</li>
+</ul>
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/MyISAM.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/mysqljoin.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*查看join buffer 大小*/</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%join%'</span></span><br></pre></td></tr></table></figure>
+<p>优化原则：</p>
+<ul>
+<li>永远用小结果集驱动大结果集</li>
+<li>保证驱动表上的join条件字段已经被索引</li>
+<li>调整Join Buffer(join_buffer_size)大小(空间换时间)</li>
+</ul>
+<h3 id="OrderBy"><a href="#OrderBy" class="headerlink" title="OrderBy"></a>OrderBy</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/orderby.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*查看join buffer 大小*/</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%sort%'</span> </span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'%max_length_for_sort_data%'</span></span><br></pre></td></tr></table></figure>
+<p>优化原则：</p>
+<ul>
+<li>索引顺序一致的话不需要在排序</li>
+<li>加大max_length_for_sort_data,把数据跟需要排序的字段放到内存中处理后一起返回。</li>
+<li>加大innodb_sort_buffer_size(空间换时间)</li>
+</ul>
+<h3 id="GroupBy"><a href="#GroupBy" class="headerlink" title="GroupBy"></a>GroupBy</h3><p>GroupBy是在OrderBy的基础上进行的 所以优化与OrderBy同理</p>
+<h3 id="Distinct"><a href="#Distinct" class="headerlink" title="Distinct"></a>Distinct</h3><p>Distinct是在GroupBy的基础上进行的 所以优化与OrderBy同理</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.865Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/07/19/mysql索引/" target="_blank" rel="external">http://lj360560179.github.io/2018/07/19/mysql索引/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2018/07/19/mysql索引/&title=《mysql 索引结构》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2018/07/19/mysql索引/&title=《mysql 索引结构》 — 切切切切切切图的&source=mysql 索引结构" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2018/07/19/mysql索引/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql 索引结构》 — 切切切切切切图的&url=http://lj360560179.github.io/2018/07/19/mysql索引/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2018/07/19/mysql索引/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/25/dubbo/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">dubbo 调用流程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="mysql索引" data-title="mysql 索引结构" data-url="http://lj360560179.github.io/2018/07/19/mysql索引/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2018/07/19/mysql索引/&title=《mysql 索引结构》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2018/07/19/mysql索引/&title=《mysql 索引结构》 — 切切切切切切图的&source=mysql 索引结构" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2018/07/19/mysql索引/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mysql 索引结构》 — 切切切切切切图的&url=http://lj360560179.github.io/2018/07/19/mysql索引/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2018/07/19/mysql索引/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aS46DMBAFwNz/0sx2pBmS92yIhF2sUJQEF4tW/16v+DqC6+z7vz/5+52zZ73uuDAwMB7LSA6XHzd5SnKG/GwYGBj7MN4HvuR+7LjJ64uCMgYGBkZ59PfBOvk+BgYGxgxjJqEcA2NgYGC0KVrbRMv/80u1OAYGxgMZedf9+/e3zDcwMDAexTjKq239J79tg+w/p8LAwFiakQe4+cSxPWg9EMXAwFiU0a4+tIOBsYIzX/KI+oUYGBhLMMaWHtrVsTvuiwwXAwPjsYw8vLZjxRleu16GgYGxNiNvx181bjyGrqIKx8DA2IAx1tafGYImQfbDbzEwMDZjtKtdMyOE+cT0Q2qIgYGxBKMtQdvD5S+obeSdvlAMDIylGW0rre3qtSVrmz5iYGDswGiDbBI058vd9rcYGBjrMfKQlydqV62aXbAzgoGBsQQjT+nGMs28MTcWajEwMPZktAPIsQCdZ3QzIwoMDIxVGUmLf+yR+UiyHWRiYGDswMgLy/kQmbf26vEnBgbGZoz5wUByxPnUEwMDYzfG/ILFWFu/radPQzAGBsaijKO8Lnhn5cAgqr8xMDCWZrTHmm+f5UXv1LIFBgbGcowkyI410dqwngdcDAyMPRnzJWhbpo6lfaf/jIGBgRGUnXeE5sHNNQwMjO0Z7VrGGL4eUWBgYGzAaFe+2qK0PW6OwcDA2IExNpJMCtSk6Z+vml0w1MTAwHge4weAW9E/84EebgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

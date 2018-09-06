@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JVM机制运行原理 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java,jvm">
+    <meta name="description" content="jvm启动流程                                                                                                           jvm基本结构">
+<meta name="keywords" content="java,jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM机制运行原理">
+<meta property="og:url" content="http://lj360560179.github.io/2017/06/11/jvm运行机制/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="jvm启动流程                                                                                                           jvm基本结构">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/jvm1.png">
+<meta property="og:image" content="http://ni484sha.com/images/jvm2.png">
+<meta property="og:image" content="http://ni484sha.com/images/jvm3.png">
+<meta property="og:image" content="http://ni484sha.com/images/jvm4.png">
+<meta property="og:image" content="http://ni484sha.com/images/jvm5.png">
+<meta property="og:image" content="http://ni484sha.com/images/jvm6.png">
+<meta property="og:image" content="http://ni484sha.com/images/jvm7.png">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM机制运行原理">
+<meta name="twitter:description" content="jvm启动流程                                                                                                           jvm基本结构">
+<meta name="twitter:image" content="http://ni484sha.com/images/jvm1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JVM机制运行原理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JVM机制运行原理</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-10T16:34:14.000Z" itemprop="datePublished" class="page-time">
+  2017-06-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jvm启动流程"><span class="post-toc-number">1.</span> <span class="post-toc-text">jvm启动流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#jvm基本结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">jvm基本结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#PC寄存器"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">PC寄存器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法区"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">方法区</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Java堆"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Java堆</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Java栈"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">Java栈</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#操作数栈"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">操作数栈</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#栈上分配"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">栈上分配</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#栈、堆、方法区交互"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">栈、堆、方法区交互</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内存模型"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">内存模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#可见性"><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">可见性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#有序性"><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">有序性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#指令重排"><span class="post-toc-number">2.6.3.</span> <span class="post-toc-text">指令重排</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#指令重排的基本原则-happen-before"><span class="post-toc-number">2.6.4.</span> <span class="post-toc-text">指令重排的基本原则 (happen-before)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#解释运行"><span class="post-toc-number">2.6.5.</span> <span class="post-toc-text">解释运行</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#编译运行（JIT）"><span class="post-toc-number">2.6.6.</span> <span class="post-toc-text">编译运行（JIT）</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-jvm运行机制"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JVM机制运行原理</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-11 00:34:14" datetime="2017-06-10T16:34:14.000Z"  itemprop="datePublished">2017-06-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="jvm启动流程"><a href="#jvm启动流程" class="headerlink" title="jvm启动流程"></a>jvm启动流程</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="jvm基本结构"><a href="#jvm基本结构" class="headerlink" title="jvm基本结构"></a>jvm基本结构</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h4><ul>
+<li>每个线程拥有一个PC寄存器</li>
+<li>在线程创建时 创建</li>
+<li>指向下一条指令的地址</li>
+<li>执行本地方法时，PC的值为undefined</li>
+</ul>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>保存装载的类信息 </p>
+<ul>
+<li>类型的常量池 </li>
+<li>字段，方法信息</li>
+<li>方法字节码</li>
+</ul>
+<p>类的全限定名(类的全路径名)<br>类的直接超类的全限定名(如果这个类是Object,则它没有超类)<br>这个类是类型(类)还是接口<br>类的访问修饰符,如public、abstract、final等<br>所有的直接接口全限定名的有序列表(假如它实现了多个接口)<br>常量池：字段、方法信息、类变量信息(静态变量)<br>装载该类的装载器的引用(classLoader)、类型引用(class)<br>通常和永久区(Perm)关联在一起</p>
+<h4 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h4><ul>
+<li>和程序开发密切相关</li>
+<li>应用系统对象都保存在Java堆中</li>
+<li>所有线程共享Java堆</li>
+<li>对分代GC来说，堆也是分代的</li>
+<li>GC的主要工作区间</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>eden : s0 : s1 = 8 : 1 : 1</p>
+<h4 id="Java栈"><a href="#Java栈" class="headerlink" title="Java栈"></a>Java栈</h4><ul>
+<li>线程私有</li>
+<li>栈由一系列帧组成（因此Java栈也叫做帧栈）</li>
+<li>帧保存一个方法的局部变量、操作数栈、常量池指针</li>
+<li>每一次方法调用创建一个帧，并压栈</li>
+</ul>
+<h5 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h5><p>Java没有寄存器，所有参数传递使用操作数栈</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c=<span class="number">0</span>;</span><br><span class="line">    c=a+b;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0:   iconst_0 // 0压栈</span><br><span class="line">1:   istore_2 // 弹出int，存放于局部变量2</span><br><span class="line">2:   iload_0  // 把局部变量0压栈</span><br><span class="line">3:   iload_1 // 局部变量1压栈</span><br><span class="line">4:   iadd      //弹出2个变量，求和，结果压栈</span><br><span class="line">5:   istore_2 //弹出结果，放于局部变量2</span><br><span class="line">6:   iload_2  //局部变量2压栈</span><br><span class="line">7:   ireturn   //返回</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="栈上分配"><a href="#栈上分配" class="headerlink" title="栈上分配"></a>栈上分配</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OnStackTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">alloc</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</span><br><span class="line">        b[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> b=System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100000000</span>;i++)&#123;</span><br><span class="line">            alloc();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> e=System.currentTimeMillis();</span><br><span class="line">        System.out.println(e-b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-server -Xmx10m -Xms10m</span><br><span class="line">-XX:+DoEscapeAnalysis -XX:+PrintGC</span><br></pre></td></tr></table></figure>
+<p>输出结果 5</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-server -Xmx10m -Xms10m  </span><br><span class="line">-XX:-DoEscapeAnalysis -XX:+PrintGC</span><br></pre></td></tr></table></figure>
+<p>……<br>[GC 3550K-&gt;478K(10240K), 0.0000977 secs]<br>[GC 3550K-&gt;478K(10240K), 0.0001361 secs]<br>[GC 3550K-&gt;478K(10240K), 0.0000963 secs]<br>564</p>
+<ul>
+<li>小对象（一般几十个bytes），在没有逃逸的情况下，可以直接分配在栈上</li>
+<li>直接分配在栈上，可以自动回收，减轻GC压力</li>
+<li>大对象或者逃逸对象无法栈上分配</li>
+</ul>
+<h4 id="栈、堆、方法区交互"><a href="#栈、堆、方法区交互" class="headerlink" title="栈、堆、方法区交互"></a>栈、堆、方法区交互</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppMain</span> </span>&#123;</span><br><span class="line">    <span class="comment">//运行时, jvm 把appmain的信息都放入方法区 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//main 方法本身放入方法区。</span></span><br><span class="line">        Sample test1 = <span class="keyword">new</span> Sample(<span class="string">" 测试 1"</span>);</span><br><span class="line">        <span class="comment">//test1是引用，所以放到栈区里， Sample是自定义对象应该放到堆里面</span></span><br><span class="line">        Sample test2 = <span class="keyword">new</span> Sample(<span class="string">" 测试 2"</span>);</span><br><span class="line"></span><br><span class="line">        test1.printName();</span><br><span class="line">        test2.printName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample</span></span>&#123;</span><br><span class="line">    <span class="comment">//运行时, jvm 把appmain的信息都放入方法区 </span></span><br><span class="line">    <span class="keyword">private</span> name;</span><br><span class="line">    <span class="comment">//new Sample实例后，name 引用放入栈区里，name 对象放入堆里 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sample</span><span class="params">(String nam)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//print方法本身放入 方法区里。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.print(name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h4><ul>
+<li>每一个线程有一个工作内存和主存独立</li>
+<li>工作内存存放主存中变量的值的拷贝</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm6.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<blockquote>
+<p>当数据从主内存复制到工作存储时，必须出现两个动作：</p>
+<ul>
+<li>第一，由主内存执行的读（read）操作；</li>
+<li>第二，由工作内存执行的相应的load操作；当数据从工作内存拷贝到主内存时，也出现两个操作：第一个，由工作内存执行的存储（store）操作；第二，由主内存执行的相应的写（write）操作</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>每一个操作都是原子的，即执行期间不会被中断</p>
+</blockquote>
+<blockquote>
+<p>对于普通变量，一个线程中更新的值，不能马上反应在其他变量中,如果需要在其他线程中立即可见，需要使用 volatile 关键字</p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/jvm7.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h5><ul>
+<li>一个线程修改了变量，其他线程可以立即知道</li>
+<li>保证可见性的方法<ul>
+<li>volatile</li>
+<li>synchronized （unlock之前，写变量值回主存）</li>
+<li>final(一旦初始化完成，其他线程就可见)</li>
+</ul>
+</li>
+</ul>
+<h5 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h5><ul>
+<li>在本线程内，操作都是有序的</li>
+<li>在线程外观察，操作都是无序的。（指令重排 或 主内存同步延时）</li>
+</ul>
+<h5 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h5><ul>
+<li>线程内串行语义</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">写后读	a = 1;b = a;	写一个变量之后，再读这个位置。</span><br><span class="line">写后写	a = 1;a = 2;	写一个变量之后，再写这个变量。</span><br><span class="line">读后写	a = b;b = 1;	读一个变量之后，再写这个变量。</span><br><span class="line">以上语句不可重排</span><br><span class="line">编译器不考虑多线程间的语义</span><br><span class="line">可重排： a=1;b=2;</span><br></pre></td></tr></table></figure>
+<h5 id="指令重排的基本原则-happen-before"><a href="#指令重排的基本原则-happen-before" class="headerlink" title="指令重排的基本原则 (happen-before)"></a>指令重排的基本原则 (happen-before)</h5><ul>
+<li>程序顺序原则：一个线程内保证语义的串行性</li>
+<li>volatile规则：volatile变量的写，先发生于读</li>
+<li>锁规则：解锁(unlock)必然发生在随后的加锁(lock)前</li>
+<li>传递性：A先于B，B先于C 那么A必然先于C</li>
+<li>线程的start方法先于它的每一个动作</li>
+<li>线程的所有操作先于线程的终结（Thread.join()）</li>
+<li>线程的中断（interrupt()）先于被中断线程的代码</li>
+<li>对象的构造函数执行结束先于finalize()方法</li>
+</ul>
+<h5 id="解释运行"><a href="#解释运行" class="headerlink" title="解释运行"></a>解释运行</h5><ul>
+<li>解释执行以解释方式运行字节码</li>
+<li>解释执行的意思是：读一句执行一句</li>
+</ul>
+<h5 id="编译运行（JIT）"><a href="#编译运行（JIT）" class="headerlink" title="编译运行（JIT）"></a>编译运行（JIT）</h5><ul>
+<li>将字节码编译成机器码</li>
+<li>直接执行机器码</li>
+<li>运行时编译</li>
+<li>编译后性能有数量级的提升</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.864Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/06/11/jvm运行机制/" target="_blank" rel="external">http://lj360560179.github.io/2017/06/11/jvm运行机制/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/11/jvm运行机制/&title=《JVM机制运行原理》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/11/jvm运行机制/&title=《JVM机制运行原理》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/11/jvm运行机制/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JVM机制运行原理》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/11/jvm运行机制/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/11/jvm运行机制/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/12/jvm参数设置/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">常用JVM配置参数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/07/锁优化/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">锁优化</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="jvm运行机制" data-title="JVM机制运行原理" data-url="http://lj360560179.github.io/2017/06/11/jvm运行机制/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/11/jvm运行机制/&title=《JVM机制运行原理》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/11/jvm运行机制/&title=《JVM机制运行原理》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/11/jvm运行机制/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JVM机制运行原理》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/11/jvm运行机制/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/11/jvm运行机制/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aO47jMBAFQN//0tp0NpDwXlMOTBajgS3RKg3Q6A8/n3hdf9bdJ3fX3135fO/nGwsDA+NnGdfjen7o5Cef90yuSV4KBgbGCYznwHcHmH2ePG4dlDEwMDDiwJq/gpyHgYGB0TKSYJoUuu3rwMDAwMgDX9JoW2/VfbEWx8DA+EHGShD89t9fmW9gYGD8FOMqV35XPk6Y7f/fXRgYGFsz3h1DtiF1pejFwMA4k5EHx/yhZ7nq8JAHBgbG1ozZdkkAnR3aWG/5YWBg7MfID3jlKd1KujkM2RgYGFszZu34vE32VokbjRAwMDC2Y7Qt+9mVM8DSfwADA2NTRnv0Kvl2JezmxTMGBsbejPbwxPqPPd/bFskYGBinMVaa8jNYEUyTNhwGBsamjHa7WeLYHpioj1ZgYGBszchL05WStR1/5uXu7VNhYGBsypgB2uI2Tx/z14eBgXEC4632WZ445sODpD2HgYFxAmMWRmcBt23k5aEZAwNjb8as7dW23mZjhiJxxMDAOIAxS9HygNsmi3W7DQMD4wBGfcQhDsp3pFk5WpwZwcDA2IJxlSsZRg7nEvGwM7oBAwNjI0bbdGu3nh0OG6aGGBgYWzPyIDtLGdv922swMDDOYSThsm2utciV0I+BgYGRBNw8+VsfixaVMQYGxpGM5Mfab9sG3AsBFwMD4wcZbw0D1gcG+WvFwMA4h9HmXXk6OHvot8I0BgbGFox/H0W8KtyiZmwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

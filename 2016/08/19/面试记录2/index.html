@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>2016.8.19 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="1.索引的优缺点优点：    通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。    可以大大加快数据的检索速度，这也是创建索引的最主要的原因。    可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。    在使用分组和排序 子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。   通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2016.8.19">
+<meta property="og:url" content="http://lj360560179.github.io/2016/08/19/面试记录2/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="1.索引的优缺点优点：    通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。    可以大大加快数据的检索速度，这也是创建索引的最主要的原因。    可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。    在使用分组和排序 子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。   通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2016.8.19">
+<meta name="twitter:description" content="1.索引的优缺点优点：    通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。    可以大大加快数据的检索速度，这也是创建索引的最主要的原因。    可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。    在使用分组和排序 子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。   通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">2016.8.19</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">2016.8.19</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-08-19T04:34:14.000Z" itemprop="datePublished" class="page-time">
+  2016-08-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-索引的优缺点"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.索引的优缺点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-int-跟-Ingter"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.int 跟 Ingter</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-时间日期格式"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.时间日期格式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-JDK-JRE-JVM"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.JDK,JRE,JVM</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JDK"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">JDK</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Java-Runtime-Environment（JRE）"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">Java Runtime Environment（JRE）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JVM（java-virtual-machine）"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">JVM（java virtual machine）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最后"><span class="post-toc-number">5.</span> <span class="post-toc-text">最后</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-面试记录2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">2016.8.19</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-08-19 12:34:14" datetime="2016-08-19T04:34:14.000Z"  itemprop="datePublished">2016-08-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="1-索引的优缺点"><a href="#1-索引的优缺点" class="headerlink" title="1.索引的优缺点"></a>1.索引的优缺点</h3><p>优点：  </p>
+<ul>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。   </li>
+<li>可以大大加快数据的检索速度，这也是创建索引的最主要的原因。   </li>
+<li>可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。   </li>
+<li>在使用分组和排序 子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。  </li>
+<li>通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。    <a id="more"></a>
+缺点：</li>
+<li>创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加。  </li>
+<li>索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大。 </li>
+<li>当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度。 </li>
+</ul>
+<p>&ensp;&ensp;索引是建立在数据库表中的某些列的上面。因此，在创建索引的时候，应该仔细考虑在哪些列上可以创建索引，在哪些列上不能创建索引。一般来说，应该在这些列上创建索引，例如： </p>
+<ul>
+<li>在经常需要搜索的列上，可以加快搜索的速度； </li>
+<li>在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构； </li>
+<li>在经常用在连接的列上，这些列主要是一些外键，可以加快连接的速度；</li>
+<li>在经常需要根据范围进行搜索的列上创建索引，因为索引已经排序，其指定的范围是连续的；  </li>
+<li>在经常需要排序的列上创建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间； </li>
+<li>在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。</li>
+</ul>
+<h3 id="2-int-跟-Ingter"><a href="#2-int-跟-Ingter" class="headerlink" title="2.int 跟 Ingter"></a>2.int 跟 Ingter</h3><p>&ensp;&ensp;int与integer的区别从大的方面来说就是基本数据类型与其包装类的区别：<br>int 是基本类型，直接存数值，而integer是对象，用一个引用指向这个对象;</p>
+<ul>
+<li>Java 中的数据类型分为基本数据类型和复杂数据类型,int 是前者而integer 是后者（也就是一个类）；因此在类进行初始化时int类的变量初始为0.而Integer的变量则初始化为null.</li>
+<li>初始化的时候<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i =<span class="number">1</span>；</span><br><span class="line">Integer i= <span class="keyword">new</span> Integer(<span class="number">1</span>);<span class="comment">//(要把integer当做一个类看)；</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&ensp;&ensp;但由于有了自动装箱和拆箱，int 是基本数据类型（面向过程留下的痕迹，不过是对java的有益补充），Integer 是一个类，是int的扩展，定义了很多的转换方法，类似的还有：float Float;double Double;string String等，而且还提供了处理 int 类型时非常有用的其他一些常量和方法。<br>举个例子：当需要往ArrayList，HashMap中放东西时，像int，double这种内建类型是放不进去的，因为容器都是装 object的，这是就需要这些内建类型的外覆类了。Java中每种内建类型都有相应的外覆类。<br>Java中int和Integer关系是比较微妙的。关系如下：</p>
+<ul>
+<li>int是基本的数据类型；</li>
+<li>Integer是int的封装类；</li>
+<li>int和Integer都可以表示某一个数值；</li>
+<li>int和Integer不能够互用，因为他们两种不同的数据类型；</li>
+<li>并且泛型定义时也不支持int: 如：List<integer> list = new ArrayList<integer>();可以  而List<int> list = new ArrayList<int>();则不行</int></int></integer></integer></li>
+</ul>
+<h3 id="3-时间日期格式"><a href="#3-时间日期格式" class="headerlink" title="3.时间日期格式"></a>3.时间日期格式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yyyy-MM-dd HH:mm:ss &gt;&gt;&gt; yyyy年MM月dd日HH时mm分ss秒</span><br></pre></td></tr></table></figure>
+<h3 id="4-JDK-JRE-JVM"><a href="#4-JDK-JRE-JVM" class="headerlink" title="4.JDK,JRE,JVM"></a>4.JDK,JRE,JVM</h3><h4 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h4><p>&ensp;&ensp;JDK是Java开发工具包，是Sun Microsystems针对Java开发员的产品。<br>&ensp;&ensp;JDK中包含JRE，在JDK的安装目录下有一个名为jre的目录，里面有两个文件夹bin和lib，在这里可以认为bin里的就是jvm，lib中则是<br>&ensp;&ensp;jvm工作所需要的类库，而jvm和 lib和起来就称为jre。<br>JDK是整个JAVA的核心，包括了Java运行环境JRE（Java Runtime Envirnment）、一堆Java工具（javac/java/jdb等）和Java基础的类库（即Java API 包括rt.jar）。  </p>
+<h4 id="Java-Runtime-Environment（JRE）"><a href="#Java-Runtime-Environment（JRE）" class="headerlink" title="Java Runtime Environment（JRE）"></a>Java Runtime Environment（JRE）</h4><p>&ensp;&ensp;是运行基于Java语言编写的程序所不可缺少的运行环境。也是通过它，Java的开发者才得以将自己开发的程序发布到用户手中，让用户使用。<br>&ensp;&ensp;RE中包含了Java virtual machine（JVM），runtime class libraries和Java application    launcher，这些是运行Java程序的必要组件。<br>&ensp;&ensp;与大家熟知的JDK不同，JRE是Java运行环境，并不是一个开发环境，所以没有包含任何开发工具（如编译器和调试器），只是针对于使用Java程序的用户。   </p>
+<h4 id="JVM（java-virtual-machine）"><a href="#JVM（java-virtual-machine）" class="headerlink" title="JVM（java virtual machine）"></a>JVM（java virtual machine）</h4><p>&ensp;&ensp;就是我们常说的java虚拟机，它是整个java实现跨平台的最核心的部分，所有的java程序会首先被编译为.class的类文件，这种类文件可以在虚拟机上执行。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>&ensp;&ensp;上面的答案都是百度来的！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.874Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/08/19/面试记录2/" target="_blank" rel="external">http://lj360560179.github.io/2016/08/19/面试记录2/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2016/08/19/面试记录2/&title=《2016.8.19》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2016/08/19/面试记录2/&title=《2016.8.19》 — 切切切切切切图的&source=1.索引的优缺点优点：  
+
+通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。   
+可以大大加快数据的检索速度，这也是创建索引的最主要的原因。..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2016/08/19/面试记录2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《2016.8.19》 — 切切切切切切图的&url=http://lj360560179.github.io/2016/08/19/面试记录2/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2016/08/19/面试记录2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/08/19/Druid简单配置/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Druid简单配置</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/17/面试记录/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">2016.8.17</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="面试记录2" data-title="2016.8.19" data-url="http://lj360560179.github.io/2016/08/19/面试记录2/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2016/08/19/面试记录2/&title=《2016.8.19》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2016/08/19/面试记录2/&title=《2016.8.19》 — 切切切切切切图的&source=1.索引的优缺点优点：  
+
+通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。   
+可以大大加快数据的检索速度，这也是创建索引的最主要的原因。..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2016/08/19/面试记录2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《2016.8.19》 — 切切切切切切图的&url=http://lj360560179.github.io/2016/08/19/面试记录2/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2016/08/19/面试记录2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aUY6DMAxFUfa/aWYBM4H7bBgJ5+arqijJSSUrsX0ceJyL0Xl+9YbrN7eGDBkyPss4L8fqmd/f87lWn8m8yxllyJCxAYNPeQ1YLSVdbhyUZciQIQOE1PR5zpYhQ4aMlHGCQYJyZztkyJCxJ4MsiFxcrw+L6RJfuYvLkCHjg4x+muy9z6/UN2TIkPEpxhkOcvkk3/D3oFXJkCFjNCNNpdUOkbVCaZqkkyFDxlQGSYTxK2inCSN9z83/IEOGjEGM9ADHwyiK9O1L8h//iQwZMsYx0qNeJyXHtyYuP8iQIWM0I03Kk8tn54p7PcvNamXIkDGUwUNesVULHBD7oVmGDBmzGf+zXBLEO2wZMmTMZrQCXKnBIi1FoG9kyJAxmsELA52rbKfxIigwyJAhYzTjgWAHpkENE+GTMmTI2IHRX1xadKxtCmq2kCFDxlBGf/pOYi5tRws6R2TIkDGOUQup10dAXphM279ufiVDhozRDJ4II+mzTvME35oj3W8ZMmR8lsETZIRKFsFzZQFYhgwZ2zB4STLN0j97Vb4JuDJkyNiAkSbCasdHvjXoWClDhoyhjDMcT5UN+u+Mz6oyZMj4LKPTLkYOf/3CZ9BsIUOGjNGM9GjYafzic5E1yJAhYzdGcOstFQ/Spg1eZJUhQ4YMXmislTBr+CPdURkyZGzGqF1fO91q6P0yZMjYgJFeLGuNEST48m2VIUPGPoy0xSEtGNSaxsg7ZciQsQHjB/GjiYcBQfpoAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>GC算法与种类 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java,jvm,GC">
+    <meta name="description" content="GC 算法与种类 GC的概念 GC算法  引用计数法 标记清除 标记压缩 复制算法   可触及性  Stop-The-World  GC的概念 Garbage Collection 垃圾收集 1960年 List 使用了GC Java中，GC的对象是堆空间和永久区  引用计数法 老牌垃圾回收算法 通过引用计算来回收垃圾 使用者 COM ActionScript3 Python    引用计数器的实">
+<meta name="keywords" content="java,jvm,GC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GC算法与种类">
+<meta property="og:url" content="http://lj360560179.github.io/2017/06/13/GC算法和种类/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="GC 算法与种类 GC的概念 GC算法  引用计数法 标记清除 标记压缩 复制算法   可触及性  Stop-The-World  GC的概念 Garbage Collection 垃圾收集 1960年 List 使用了GC Java中，GC的对象是堆空间和永久区  引用计数法 老牌垃圾回收算法 通过引用计算来回收垃圾 使用者 COM ActionScript3 Python    引用计数器的实">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/gc1.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc2.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc3.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc4.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc5.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc6.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc7.png">
+<meta property="og:image" content="http://ni484sha.com/images/gc8.png">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GC算法与种类">
+<meta name="twitter:description" content="GC 算法与种类 GC的概念 GC算法  引用计数法 标记清除 标记压缩 复制算法   可触及性  Stop-The-World  GC的概念 Garbage Collection 垃圾收集 1960年 List 使用了GC Java中，GC的对象是堆空间和永久区  引用计数法 老牌垃圾回收算法 通过引用计算来回收垃圾 使用者 COM ActionScript3 Python    引用计数器的实">
+<meta name="twitter:image" content="http://ni484sha.com/images/gc1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">GC算法与种类</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">GC算法与种类</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-12T16:34:14.000Z" itemprop="datePublished" class="page-time">
+  2017-06-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GC-算法与种类"><span class="post-toc-number">1.</span> <span class="post-toc-text">GC 算法与种类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GC的概念"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">GC的概念</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#引用计数法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">引用计数法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标记-清除"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">标记-清除</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标记-压缩"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">标记-压缩</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#标记压缩对标记清除而言，有什么优势呢？"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">标记压缩对标记清除而言，有什么优势呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复制算法"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">复制算法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分代思想"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">分代思想</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#GC算法总结整理"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">GC算法总结整理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可触及性"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">可触及性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Stop-The-World"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">Stop-The-World</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-GC算法和种类"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">GC算法与种类</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-13 00:34:14" datetime="2017-06-12T16:34:14.000Z"  itemprop="datePublished">2017-06-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="GC-算法与种类"><a href="#GC-算法与种类" class="headerlink" title="GC 算法与种类"></a>GC 算法与种类</h3><ul>
+<li>GC的概念</li>
+<li><p>GC算法</p>
+<ul>
+<li>引用计数法</li>
+<li>标记清除</li>
+<li>标记压缩</li>
+<li>复制算法</li>
+</ul>
+</li>
+<li><p>可触及性</p>
+</li>
+<li>Stop-The-World</li>
+</ul>
+<h4 id="GC的概念"><a href="#GC的概念" class="headerlink" title="GC的概念"></a>GC的概念</h4><ul>
+<li>Garbage Collection 垃圾收集</li>
+<li>1960年 List 使用了GC</li>
+<li>Java中，GC的对象是堆空间和永久区</li>
+</ul>
+<h4 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h4><ul>
+<li>老牌垃圾回收算法</li>
+<li>通过引用计算来回收垃圾</li>
+<li>使用者<ul>
+<li>COM</li>
+<li>ActionScript3</li>
+<li>Python</li>
+</ul>
+</li>
+</ul>
+<p>引用计数器的实现很简单，对于一个对象A，只要有任何一个对象引用了A，则A的引用计数器就加1，当引用失效时，引用计数器就减1。只要对象A的引用计数器的值为0，则对象A就不可能再被使用。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>引用计数法的问题</p>
+<ul>
+<li>引用和去引用伴随加法和减法，影响性能</li>
+<li>很难处理循环引用</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc2.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h4><p>标记-清除算法是现代垃圾回收算法的思想基础。标记-清除算法将垃圾回收分为两个阶段：标记阶段和清除阶段。一种可行的实现是，在标记阶段，首先通过根节点，标记所有从根节点开始的可达对象。因此，未被标记的对象就是未被引用的垃圾对象。然后，在清除阶段，清除所有未被标记的对象。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc3.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="标记-压缩"><a href="#标记-压缩" class="headerlink" title="标记-压缩"></a>标记-压缩</h4><p>标记-压缩算法适合用于存活对象较多的场合，如老年代。它在标记-清除算法的基础上做了一些优化。和标记-清除算法一样，标记-压缩算法也首先需要从根节点开始，对所有可达对象做一次标记。但之后，它并不简单的清理未标记的对象，而是将所有的存活对象压缩到内存的一端。之后，<em>清理边界外所有的空间</em>。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc4.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="标记压缩对标记清除而言，有什么优势呢？"><a href="#标记压缩对标记清除而言，有什么优势呢？" class="headerlink" title="标记压缩对标记清除而言，有什么优势呢？"></a>标记压缩对标记清除而言，有什么优势呢？</h4><h4 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h4><p>与标记-清除算法相比，复制算法是一种相对高效的回收方法<br>不适用于存活对象较多的场合 如老年代<br>将原有的内存空间分为两块，每次只使用其中一块，在垃圾回收时，将正在使用的内存中的存活对象复制到未使用的内存块中，之后，清除正在使用的内存块中的所有对象，交换两个内存的角色，完成垃圾回收</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>复制算法的最大问题是：空间浪费 整合标记清理思想</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc6.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>-XX:+PrintGCDetails的输出</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc7.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="分代思想"><a href="#分代思想" class="headerlink" title="分代思想"></a>分代思想</h4><p>依据对象的存活周期进行分类，短命对象归为新生代，长命对象归为老年代。<br>根据不同代的特点，选取合适的收集算法  </p>
+<ul>
+<li>少量对象存活，适合复制算法</li>
+<li>大量对象存活，适合标记清理或者标记压缩</li>
+</ul>
+<h4 id="GC算法总结整理"><a href="#GC算法总结整理" class="headerlink" title="GC算法总结整理"></a>GC算法总结整理</h4><ul>
+<li><p>引用计数</p>
+<ul>
+<li>没有被Java采用</li>
+</ul>
+</li>
+<li><p>标记-清除</p>
+</li>
+<li><p>标记-压缩</p>
+</li>
+<li><p>复制算法</p>
+<ul>
+<li>新生代</li>
+</ul>
+</li>
+</ul>
+<p>所有的算法，需要能够识别一个垃圾对象，因此需要给出一个可触及性的定义</p>
+<h4 id="可触及性"><a href="#可触及性" class="headerlink" title="可触及性"></a>可触及性</h4><ul>
+<li><p>可触及的</p>
+<ul>
+<li>从根节点可以触及到这个对象</li>
+</ul>
+</li>
+<li><p>可复活的</p>
+<ul>
+<li>一旦所有引用被释放，就是可复活状态</li>
+<li>因为在finalize()中可能复活该对象</li>
+</ul>
+</li>
+<li><p>不可触及的</p>
+<ul>
+<li>在finalize()后，可能会进入不可触及状态</li>
+<li>不可触及的对象不可能复活</li>
+<li>可以回收</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CanReliveObj</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> CanReliveObj obj;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.finalize();</span><br><span class="line">		System.out.println(<span class="string">"CanReliveObj finalize called"</span>);</span><br><span class="line">		obj = <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"I am CanReliveObj"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		obj = <span class="keyword">new</span> CanReliveObj();</span><br><span class="line">		obj = <span class="keyword">null</span>; <span class="comment">// 可复活</span></span><br><span class="line">		System.gc();</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">		<span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"obj 是 null"</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"obj 可用"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"第二次gc"</span>);</span><br><span class="line">		obj = <span class="keyword">null</span>; <span class="comment">// 不可复活</span></span><br><span class="line">		System.gc();</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">		<span class="keyword">if</span> (obj == <span class="keyword">null</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"obj 是 null"</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"obj 可用"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>经验：避免使用finalize()，操作不慎可能导致错误。  </li>
+<li><p>优先级低，何时被调用， 不确定  </p>
+<ul>
+<li>何时发生GC不确定  </li>
+<li>可以使用try-catch-finally来替代它</li>
+</ul>
+</li>
+<li><p>根</p>
+<ul>
+<li>栈中引用的对象</li>
+<li>方法区中静态成员或者常量引用的对象（全局对象）</li>
+<li>JNI方法栈中引用对象</li>
+</ul>
+</li>
+</ul>
+<h4 id="Stop-The-World"><a href="#Stop-The-World" class="headerlink" title="Stop-The-World"></a>Stop-The-World</h4><ul>
+<li><p>Java中一种全局暂停的现象</p>
+<ul>
+<li>全局停顿，所有Java代码停止，native代码可以执行，但不能和JVM交互</li>
+<li>多半由于GC引起(Dump线程、死锁检查、堆Dump)</li>
+</ul>
+</li>
+<li><p>GC时为什么会有全局停顿？</p>
+<ul>
+<li>类比在聚会时打扫房间，聚会时很乱，又有新的垃圾产生，房间永远打扫不干净，只有让大家停止活动了，才能将房间打扫干净。</li>
+</ul>
+</li>
+<li><p>危害</p>
+<ul>
+<li>长时间服务停止，没有响应</li>
+<li>遇到HA系统，可能引起主备切换，严重危害生产环境。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> starttime=System.currentTimeMillis();</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">				<span class="keyword">long</span> t=System.currentTimeMillis()-starttime;</span><br><span class="line">				System.out.println(<span class="string">"time:"</span>+t);</span><br><span class="line">				Thread.sleep(<span class="number">100</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xmx512M -Xms512M -XX:+UseSerialGC -Xloggc:gc.log -XX:+PrintGCDetails  -Xmn1m -XX:PretenureSizeThreshold=50 -XX:MaxTenuringThreshold=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	HashMap&lt;Long,<span class="keyword">byte</span>[]&gt; map=<span class="keyword">new</span> HashMap&lt;Long,<span class="keyword">byte</span>[]&gt;();</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(map.size()*<span class="number">512</span>/<span class="number">1024</span>/<span class="number">1024</span>&gt;=<span class="number">450</span>)&#123;<span class="comment">//大于450M时，清理内存</span></span><br><span class="line">					System.out.println(<span class="string">"=====准备清理=====:"</span> +map.size());</span><br><span class="line">					map.clear();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">//工作线程，消耗内存</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1024</span>;i++)&#123;</span><br><span class="line">					map.put(System.nanoTime(), <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">512</span>]);</span><br><span class="line">				&#125;</span><br><span class="line">				Thread.sleep(<span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/gc8.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.857Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/06/13/GC算法和种类/" target="_blank" rel="external">http://lj360560179.github.io/2017/06/13/GC算法和种类/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GC/">GC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/13/GC算法和种类/&title=《GC算法与种类》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/13/GC算法和种类/&title=《GC算法与种类》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/13/GC算法和种类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《GC算法与种类》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/13/GC算法和种类/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/13/GC算法和种类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/14/GC参数/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">GC相关</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/12/jvm参数设置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">常用JVM配置参数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="GC算法和种类" data-title="GC算法与种类" data-url="http://lj360560179.github.io/2017/06/13/GC算法和种类/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/13/GC算法和种类/&title=《GC算法与种类》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/13/GC算法和种类/&title=《GC算法与种类》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/13/GC算法和种类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《GC算法与种类》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/13/GC算法和种类/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/13/GC算法和种类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3awbKqMBAEUP//p33buwG7M/KqTA4rSxE4WXQNmXm94uN9cfz9NT8/udfriQMDA+NnGe/b4+qc9pb3/83ve7koGBgYBzDug+8+Utvv58uEgYGBkTDy8xMqBgYGxnOMPEbvr5wvAQYGxsmMfEPtPnzbYjFZvi+/i2NgYPwgo92s/5+fH+lvYGBg/BTjXR55IN5H7Vq8Xt4LAwNja0a7lZaPWawVeXnZh4GBcSZjLUbnD5RHcLHdhoGBsR1jEpdrYxbtvXIeBgbG3oy2SZm3IZOGQdGqzNMaAwNjC0ZeeCU3mxSUSeBexjQGBsYBjDYQn+6a5lt40c8YGBg/zpg81vx1t13KD+djYGBsymhLvXZIIn/QJOIvv8HAwNiakRdkay3P+eBFvreGgYGxN6NtE+ahuTZ4UY9WYGBgbM1oXy/zYrFtHiQtzKLCxcDA2IjRxmU7ZrE2ftEuDQYGxgmMvCh8Lkbz8Y4P18fAwNiUMd/2WhsFS66ZxDoGBsZpjPnQWN5IyAvTqHDEwMA4gLFWun0tLsuhsXrMAgMDYwvGZHhrXia2DU4MDIxzGPMHaqcd1pqdH/6FgYGxNSM/5gMW+aOsve5iYGDszchDti0W19oP7TkYGBjnMNrga9uQ+fXb8Q4MDAyM78brWtQW1SsGBgbG0nXmgRu1EzAwMA5gtM2ANpTzJVscAcHAwNiaMam7Jo2E+ZgFBgbGAYx/XkxBz7jVYfgAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

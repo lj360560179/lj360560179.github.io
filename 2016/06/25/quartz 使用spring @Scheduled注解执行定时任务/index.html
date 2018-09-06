@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>quartz 使用spring @Scheduled注解执行定时任务 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java,quartz">
+    <meta name="description" content="quartz 使用spring @Scheduled注解执行定时任务1.maven依赖12345&amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;org.quartz-scheduler&amp;lt;/groupId&amp;gt;  &amp;lt;artifactId&amp;gt;quartz&amp;lt;/artifactId&amp;gt;  &amp;lt;version&amp;gt;1.8.4&amp;lt;/version&amp;g">
+<meta name="keywords" content="java,quartz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="quartz 使用spring @Scheduled注解执行定时任务">
+<meta property="og:url" content="http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="quartz 使用spring @Scheduled注解执行定时任务1.maven依赖12345&amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;org.quartz-scheduler&amp;lt;/groupId&amp;gt;  &amp;lt;artifactId&amp;gt;quartz&amp;lt;/artifactId&amp;gt;  &amp;lt;version&amp;gt;1.8.4&amp;lt;/version&amp;g">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.866Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="quartz 使用spring @Scheduled注解执行定时任务">
+<meta name="twitter:description" content="quartz 使用spring @Scheduled注解执行定时任务1.maven依赖12345&amp;lt;dependency&amp;gt;  &amp;lt;groupId&amp;gt;org.quartz-scheduler&amp;lt;/groupId&amp;gt;  &amp;lt;artifactId&amp;gt;quartz&amp;lt;/artifactId&amp;gt;  &amp;lt;version&amp;gt;1.8.4&amp;lt;/version&amp;g">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">quartz 使用spring @Scheduled注解执行定时任务</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">quartz 使用spring @Scheduled注解执行定时任务</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-06-25T07:44:14.000Z" itemprop="datePublished" class="page-time">
+  2016-06-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#quartz-使用spring-Scheduled注解执行定时任务"><span class="post-toc-number">1.</span> <span class="post-toc-text">quartz 使用spring @Scheduled注解执行定时任务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-maven依赖"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1.maven依赖</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-spring配置"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2.spring配置</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-org-seckill-quartz包下的实现类"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3.org.seckill.quartz包下的实现类</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-quartz 使用spring @Scheduled注解执行定时任务"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">quartz 使用spring @Scheduled注解执行定时任务</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-06-25 15:44:14" datetime="2016-06-25T07:44:14.000Z"  itemprop="datePublished">2016-06-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="quartz-使用spring-Scheduled注解执行定时任务"><a href="#quartz-使用spring-Scheduled注解执行定时任务" class="headerlink" title="quartz 使用spring @Scheduled注解执行定时任务"></a>quartz 使用spring @Scheduled注解执行定时任务</h3><h5 id="1-maven依赖"><a href="#1-maven依赖" class="headerlink" title="1.maven依赖"></a>1.maven依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h5 id="2-spring配置"><a href="#2-spring配置" class="headerlink" title="2.spring配置"></a>2.spring配置</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:task</span>=<span class="string">"http://www.springframework.org/schema/task"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans </span></span></span><br><span class="line"><span class="tag"><span class="string">	http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/context  </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/task </span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/task/spring-task.xsd "</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">	<span class="tag">&lt;<span class="name">task:annotation-driven</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:annotation-config</span> /&gt;</span></span><br><span class="line">	//配置扫描位置</span><br><span class="line"> 	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"org.seckill.quartz"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>xsi:schemaLocation下要加上<br><a href="http://www.springframework.org/schema/task" target="_blank" rel="noopener">http://www.springframework.org/schema/task</a><br><a href="http://www.springframework.org/schema/task/spring-task-3.1.xsd" target="_blank" rel="noopener">http://www.springframework.org/schema/task/spring-task-3.1.xsd</a> </p>
+<h5 id="3-org-seckill-quartz包下的实现类"><a href="#3-org-seckill-quartz包下的实现类" class="headerlink" title="3.org.seckill.quartz包下的实现类"></a>3.org.seckill.quartz包下的实现类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.seckill.quartz;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.annotation.Scheduled;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 业务相关的作业调度</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment">           字段               允许值                           允许的特殊字符</span></span><br><span class="line"><span class="comment">	秒	 	0-59	 	, - * /</span></span><br><span class="line"><span class="comment">	分	 	0-59	 	, - * /</span></span><br><span class="line"><span class="comment">	小时	 	0-23	 	, - * /</span></span><br><span class="line"><span class="comment">	日期	 	1-31	 	, - * ? / L W C</span></span><br><span class="line"><span class="comment">	月份	 	1-12 或者 JAN-DEC	 	, - * /</span></span><br><span class="line"><span class="comment">	星期	 	1-7 或者 SUN-SAT	 	, - * ? / L C #</span></span><br><span class="line"><span class="comment">	年（可选）	 	留空, 1970-2099	 	, - * /</span></span><br><span class="line"><span class="comment">	*  字符代表所有可能的值</span></span><br><span class="line"><span class="comment">	/  字符用来指定数值的增量</span></span><br><span class="line"><span class="comment">	L  字符仅被用于天（月）和天（星期）两个子表达式，表示一个月的最后一天或者一个星期的最后一天</span></span><br><span class="line"><span class="comment">	6L 可以表示倒数第６天</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BizQuartz</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 每天9点到17点每过1分钟执行</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Scheduled</span>(cron = <span class="string">"0 0/1 9-17 * * ? "</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUserScore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"每天9点到17点每过1分钟执行一次"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.866Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/" target="_blank" rel="external">http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/quartz/">quartz</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/&title=《quartz 使用spring @Scheduled注解执行定时任务》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/&title=《quartz 使用spring @Scheduled注解执行定时任务》 — 切切切切切切图的&source=quartz 使用spring @Scheduled注解执行定时任务1.maven依赖12345&lt;dependency&gt;  &lt;group..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《quartz 使用spring @Scheduled注解执行定时任务》 — 切切切切切切图的&url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/07/19/Baidu/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">百度推送连接</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/05/25/Node.js学习（1）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">node</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="quartz 使用spring @Scheduled注解执行定时任务" data-title="quartz 使用spring @Scheduled注解执行定时任务" data-url="http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/&title=《quartz 使用spring @Scheduled注解执行定时任务》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/&title=《quartz 使用spring @Scheduled注解执行定时任务》 — 切切切切切切图的&source=quartz 使用spring @Scheduled注解执行定时任务1.maven依赖12345&lt;dependency&gt;  &lt;group..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《quartz 使用spring @Scheduled注解执行定时任务》 — 切切切切切切图的&url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADIUlEQVR42u3a0W7qQAwE0P7/T3OfryrCjJ1KsJw8IQrJnq1U1+P9+Ymvx6/r2fvPruT+189N1nPzhY2Njf0h7GS5m2X9vkO7icm3cgs2Njb2qezrotK+vr7zrJglm55YsLGxsbGvH5m3De1323tiY2NjY+fLyrfm+rlJC3G9KmxsbOxvZueBTtJCtEOCYrmLcQU2Njb2qew26Hnn138y38bGxsZ+Y/ajvDbBU954tE1IrcDGxsY+iD07stNG88kYeBZIrWIsbGxs7C9gtzealaINqS2QUUOCjY2N/bHsWWuRl6VV27Bub4Y5GTY2Nvbbs/PGYx/Q58j90198EhsbG/sgdnv4sg2Y8vYg/+6sNA5PCWFjY2N/LDv/d38WFeXB0CzYqk8hYWNjY384e3YEc/bO7PPR4DYoxsNNwcbGxn579l0jgdn4dnNMJw+nXoRK2NjY2B/LngU31++0Q4JZOZyVPWxsbOyz2bOgfxXQx8OJe0cX2NjY2Cexk0Xvy9X+WfvoHxsbG/tUdl6E9iPhtuS0TywO+mBjY2Mfym6LRNuc5IPYer7RljdsbGzs49h3jQFm5W0z6G0L238FDBsbG/sI9izoSVqLdjCQNBWb4QQ2Njb2qey2gG1CpWvqJjZqh8TY2NjYZ7M38VMR0MebPhsz1x0YNjY29hHsWZSTlKX2zvnG5VvwovfCxsbGPo6dtBxt4ZnFVfeWPWxsbOzz2G0BaI/pbEa5s8ArL4rY2NjYZ7DzuH8z9N1H/0nsVY8HsLGxsY9g59HPZk6ab8RmW/NVYWNjY5/Knt00Hx7MxgxtXJU3RdjY2NgnsfPG42dx5ePevLFpN+7puBcbGxv7CPb+eE3+07au/sWvARsbG/sM9qO8ZqPfdjjRfrIdaWBjY2OfxN78zW+HB3cNcfN2BRsbG/t72HcVrXZ384OV+eC5GGBgY2NjH8deRe2LMjMLofalFxsbG/ub2W0w1LYlSTHbHNDExsbGxp4dhWxL413F7Oa6jY2Njf3G7HtDpdlpmfZ40GwAjI2NjX0eux2sttF8Gxvlx3024wdsbGzsI9j/AG5um6dF1A8FAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

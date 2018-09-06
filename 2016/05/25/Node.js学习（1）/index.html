@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>node | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="node.js">
+    <meta name="description" content="特点单线程&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;node.js不为每个客户连接创建一个新的线程，仅仅使用一个线程，当有用户连接，就促发一个内部事件，通过费阻塞I/O、事件驱动机制，让Node.js程序宏观上也是并行的。而且没有线程创建、销毁的时间开销。">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node">
+<meta property="og:url" content="http://lj360560179.github.io/2016/05/25/Node.js学习（1）/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="特点单线程&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;node.js不为每个客户连接创建一个新的线程，仅仅使用一个线程，当有用户连接，就促发一个内部事件，通过费阻塞I/O、事件驱动机制，让Node.js程序宏观上也是并行的。而且没有线程创建、销毁的时间开销。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/node_1.png">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node">
+<meta name="twitter:description" content="特点单线程&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;node.js不为每个客户连接创建一个新的线程，仅仅使用一个线程，当有用户连接，就促发一个内部事件，通过费阻塞I/O、事件驱动机制，让Node.js程序宏观上也是并行的。而且没有线程创建、销毁的时间开销。">
+<meta name="twitter:image" content="http://ni484sha.com/images/node_1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">node</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">node</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-05-25T07:44:14.000Z" itemprop="datePublished" class="page-time">
+  2016-05-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特点"><span class="post-toc-number">1.</span> <span class="post-toc-text">特点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#单线程"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">单线程</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#非阻塞I-O"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">非阻塞I/O</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#事件驱动"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">事件驱动</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#适合做什么"><span class="post-toc-number">2.</span> <span class="post-toc-text">适合做什么</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Node.js学习（1）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">node</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-05-25 15:44:14" datetime="2016-05-25T07:44:14.000Z"  itemprop="datePublished">2016-05-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><h5 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h5><p>&ensp;&ensp;&ensp;&ensp;node.js不为每个客户连接创建一个新的线程，仅仅使用一个线程，当有用户连接，就促发一个内部事件，通过费阻塞I/O、事件驱动机制，让Node.js程序宏观上也是并行的。而且没有线程创建、销毁的时间开销。<br><a id="more"></a></p>
+<h5 id="非阻塞I-O"><a href="#非阻塞I-O" class="headerlink" title="非阻塞I/O"></a>非阻塞I/O</h5><p>&ensp;&ensp;&ensp;&ensp;不会等I/O语句结束，而会执行后面的语句。</p>
+<h5 id="事件驱动"><a href="#事件驱动" class="headerlink" title="事件驱动"></a>事件驱动</h5><p>&ensp;&ensp;&ensp;&ensp;不管是新用户的请求，还是老用户的I/O完成，都将以事件方式加入事件环，等待调度。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/node_1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h3 id="适合做什么"><a href="#适合做什么" class="headerlink" title="适合做什么"></a>适合做什么</h3><p>&ensp;&ensp;&ensp;&ensp;善于I/O，不善于计算。因为Node.js最擅长的就是任务调度，如果你的业务有很多的CPU计算，实际上也相当于这个计算阻塞了这个单线程，就不适合Node开发。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.859Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/05/25/Node.js学习（1）/" target="_blank" rel="external">http://lj360560179.github.io/2016/05/25/Node.js学习（1）/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/&title=《node》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/&title=《node》 — 切切切切切切图的&source=特点单线程&ensp;&ensp;&ensp;&ensp;node.js不为每个客户连接创建一个新的线程，仅仅使用一个线程，当有用户连接，就促发一个内部事..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《node》 — 切切切切切切图的&url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/06/25/quartz 使用spring @Scheduled注解执行定时任务/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">quartz 使用spring @Scheduled注解执行定时任务</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/05/25/icon/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">网站icon图标</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="Node.js学习（1）" data-title="node" data-url="http://lj360560179.github.io/2016/05/25/Node.js学习（1）/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/&title=《node》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/&title=《node》 — 切切切切切切图的&source=特点单线程&ensp;&ensp;&ensp;&ensp;node.js不为每个客户连接创建一个新的线程，仅仅使用一个线程，当有用户连接，就促发一个内部事..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《node》 — 切切切切切切图的&url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2016/05/25/Node.js学习（1）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aS1LEMAwFQO5/6WFNDZgnyRQVu7NKMUmczkLo44+P+Hi9He+/rq9P7lr/fcOBgYHxWMZrebxf03t+cr5ed/1RMDAwbmBMll+f//TJktBcCMoYGBgYy1Cbh+w1pvo5MDAwMPKXqKZx6xfFwMDAmBSx1dCZsP+hFsfAwHggY2/L7O8K4G3zDQwMjEcxXsUjf0LSXOu9wzdrYWBgHM3IA1y1KM3bbb20DwMD4x5G3mjbVbj22nzrD4eBgXEPI08Ek1fpbbNIrv8l4GJgYBzNqBal+fLVjWJJyP7l/wYGBsahjCSNy4NmdZtFNRB/OcfAwDia0Uvd8tBZHVI2Xx0DA+NoRq8RXx0M5Nc3t31gYGAczZinYpN0MBln5sMJDAyMUxl7W2m9Vt08AcXAwLiBkS9WbZlNhp2FezEwMK5hJJstekc11OaDhG9qcQwMjKMZk20Q1QFAHlijJ2BgYFzAyJfp/Vr9ENWCGQMD42zGJI3rNd0ScD4Y2JCNYmBgPISxq2SNCs7iQKLQwsPAwLiA0UvF9m78wsDAwEgCbtJ6y7eCVYejvQEnBgbG2Yx5yZqPE6qtukL9jYGBcTSjt2Ei+RDNbl88EG1uCsHAwHgsIwmySfu+2nrbdQ0GBsY9jElxW43rk1L2x7swMDAwWstU2/2TNhwGBgZGdUg5KVaTN9wWcDEwMB7FmDTOehvCJuMEDAyM2xi9vKsaUqvDhjzpxMDAOJrxCccF2xmkg8YnAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

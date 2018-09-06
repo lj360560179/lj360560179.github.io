@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【转】常用Linux命令 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="linux">
+    <meta name="description" content="【转】Java开发必会的Linux命令 1.查找文件1234567891011121314151617find / -name filename.txt 根据名称查找/目录下的filename.txt文件。find . -name &quot;*.xml&quot; 递归查找所有的xml文件find . -name &quot;*.xml&quot; |xargs grep &quot;hello world&quot; 递归查找所有文件内容中包含hell">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】常用Linux命令">
+<meta property="og:url" content="http://lj360560179.github.io/2017/05/25/linux/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="【转】Java开发必会的Linux命令 1.查找文件1234567891011121314151617find / -name filename.txt 根据名称查找/目录下的filename.txt文件。find . -name &quot;*.xml&quot; 递归查找所有的xml文件find . -name &quot;*.xml&quot; |xargs grep &quot;hello world&quot; 递归查找所有文件内容中包含hell">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】常用Linux命令">
+<meta name="twitter:description" content="【转】Java开发必会的Linux命令 1.查找文件1234567891011121314151617find / -name filename.txt 根据名称查找/目录下的filename.txt文件。find . -name &quot;*.xml&quot; 递归查找所有的xml文件find . -name &quot;*.xml&quot; |xargs grep &quot;hello world&quot; 递归查找所有文件内容中包含hell">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【转】常用Linux命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【转】常用Linux命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-25T07:44:14.000Z" itemprop="datePublished" class="page-time">
+  2017-05-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-查找文件"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.查找文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-查看一个程序是否运行"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.查看一个程序是否运行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-终止线程"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.终止线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-查看文件，包含隐藏文件"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.查看文件，包含隐藏文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-当前工作目录"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.当前工作目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-复制文件"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.复制文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-创建目录"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.创建目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-删除目录"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.删除目录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-移动文件"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.移动文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-重命令"><span class="post-toc-number">10.</span> <span class="post-toc-text">10.重命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-切换用户"><span class="post-toc-number">11.</span> <span class="post-toc-text">11.切换用户</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-修改文件权限"><span class="post-toc-number">12.</span> <span class="post-toc-text">12.修改文件权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-压缩文件"><span class="post-toc-number">13.</span> <span class="post-toc-text">13.压缩文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-列出压缩文件列表"><span class="post-toc-number">14.</span> <span class="post-toc-text">14.列出压缩文件列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-解压文件表"><span class="post-toc-number">15.</span> <span class="post-toc-text">15.解压文件表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#16-查看文件头10行"><span class="post-toc-number">16.</span> <span class="post-toc-text">16.查看文件头10行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-查看文件尾10行"><span class="post-toc-number">17.</span> <span class="post-toc-text">17.查看文件尾10行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#18-查看日志类型文件"><span class="post-toc-number">18.</span> <span class="post-toc-text">18.查看日志类型文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#19-使用超级管理员身份执行命令"><span class="post-toc-number">19.</span> <span class="post-toc-text">19.使用超级管理员身份执行命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#20-查看端口占用情况"><span class="post-toc-number">20.</span> <span class="post-toc-text">20.查看端口占用情况</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#21-查看端口属于哪个程序"><span class="post-toc-number">21.</span> <span class="post-toc-text">21.查看端口属于哪个程序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#22-查看进程"><span class="post-toc-number">22.</span> <span class="post-toc-text">22.查看进程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#23-文件下载"><span class="post-toc-number">23.</span> <span class="post-toc-text">23. 文件下载</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-linux"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【转】常用Linux命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-25 15:44:14" datetime="2017-05-25T07:44:14.000Z"  itemprop="datePublished">2017-05-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://blog.csdn.net/u013970991/article/details/52036304" target="_blank" rel="noopener">【转】Java开发必会的Linux命令</a></p>
+<h3 id="1-查找文件"><a href="#1-查找文件" class="headerlink" title="1.查找文件"></a>1.查找文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">find / -name filename.txt 根据名称查找/目录下的filename.txt文件。</span><br><span class="line"></span><br><span class="line">find . -name <span class="string">"*.xml"</span> 递归查找所有的xml文件</span><br><span class="line"></span><br><span class="line">find . -name <span class="string">"*.xml"</span> |xargs grep <span class="string">"hello world"</span> 递归查找所有文件内容中包含hello world的xml文件</span><br><span class="line"></span><br><span class="line">grep -H <span class="string">'spring'</span> *.xml 查找所以有的包含spring的xml文件</span><br><span class="line"></span><br><span class="line">find ./ -size 0 | xargs rm -f &amp;amp; 删除文件大小为零的文件</span><br><span class="line"></span><br><span class="line">ls -l | grep <span class="string">'.jar'</span> 查找当前目录中的所有jar文件</span><br><span class="line"></span><br><span class="line">grep <span class="string">'test'</span> d* 显示所有以d开头的文件中包含<span class="built_in">test</span>的行。</span><br><span class="line"></span><br><span class="line">grep <span class="string">'test'</span> aa bb cc 显示在aa，bb，cc文件中匹配<span class="built_in">test</span>的行。</span><br><span class="line"></span><br><span class="line">grep <span class="string">'[a-z]\&#123;5\&#125;'</span> aa 显示所有包含每个字符串至少有5个连续小写字符的字符串的行。</span><br></pre></td></tr></table></figure>
+<h3 id="2-查看一个程序是否运行"><a href="#2-查看一个程序是否运行" class="headerlink" title="2.查看一个程序是否运行"></a>2.查看一个程序是否运行</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps –ef|grep tomcat 查看所有有关tomcat的进程</span><br></pre></td></tr></table></figure>
+<h3 id="3-终止线程"><a href="#3-终止线程" class="headerlink" title="3.终止线程"></a>3.终止线程</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 19979 终止线程号位19979的进程</span><br></pre></td></tr></table></figure>
+<h3 id="4-查看文件，包含隐藏文件"><a href="#4-查看文件，包含隐藏文件" class="headerlink" title="4.查看文件，包含隐藏文件"></a>4.查看文件，包含隐藏文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+<h3 id="5-当前工作目录"><a href="#5-当前工作目录" class="headerlink" title="5.当前工作目录"></a>5.当前工作目录</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-复制文件"><a href="#6-复制文件" class="headerlink" title="6.复制文件"></a>6.复制文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="built_in">source</span> dest 复制文件</span><br><span class="line"></span><br><span class="line">cp -r sourceFolder targetFolder 递归复制整个文件夹</span><br><span class="line"></span><br><span class="line">scp sourecFile romoteUserName@remoteIp:remoteAddr 远程拷贝</span><br></pre></td></tr></table></figure>
+<h3 id="7-创建目录"><a href="#7-创建目录" class="headerlink" title="7.创建目录"></a>7.创建目录</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir newfolder</span><br></pre></td></tr></table></figure>
+<h3 id="8-删除目录"><a href="#8-删除目录" class="headerlink" title="8.删除目录"></a>8.删除目录</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rmdir deleteEmptyFolder 删除空目录 </span><br><span class="line"></span><br><span class="line">rm -rf deleteFile 递归删除目录中所有内容</span><br></pre></td></tr></table></figure>
+<h3 id="9-移动文件"><a href="#9-移动文件" class="headerlink" title="9.移动文件"></a>9.移动文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /temp/movefile /targetFolder</span><br></pre></td></tr></table></figure>
+<h3 id="10-重命令"><a href="#10-重命令" class="headerlink" title="10.重命令"></a>10.重命令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv oldNameFile newNameFile</span><br></pre></td></tr></table></figure>
+<h3 id="11-切换用户"><a href="#11-切换用户" class="headerlink" title="11.切换用户"></a>11.切换用户</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su -username</span><br></pre></td></tr></table></figure>
+<h3 id="12-修改文件权限"><a href="#12-修改文件权限" class="headerlink" title="12.修改文件权限"></a>12.修改文件权限</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 file.java //file.java的权限-rwxrwxrwx，r表示读、w表示写、x表示可执行</span><br></pre></td></tr></table></figure>
+<h3 id="13-压缩文件"><a href="#13-压缩文件" class="headerlink" title="13.压缩文件"></a>13.压缩文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -czf test.tar.gz /test1 /test2</span><br></pre></td></tr></table></figure>
+<h3 id="14-列出压缩文件列表"><a href="#14-列出压缩文件列表" class="headerlink" title="14.列出压缩文件列表"></a>14.列出压缩文件列表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -tzf test.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="15-解压文件表"><a href="#15-解压文件表" class="headerlink" title="15.解压文件表"></a>15.解压文件表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvzf test.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="16-查看文件头10行"><a href="#16-查看文件头10行" class="headerlink" title="16.查看文件头10行"></a>16.查看文件头10行</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -n 10 example.txt</span><br></pre></td></tr></table></figure>
+<h3 id="17-查看文件尾10行"><a href="#17-查看文件尾10行" class="headerlink" title="17.查看文件尾10行"></a>17.查看文件尾10行</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n 10 example.txt</span><br></pre></td></tr></table></figure>
+<h3 id="18-查看日志类型文件"><a href="#18-查看日志类型文件" class="headerlink" title="18.查看日志类型文件"></a>18.查看日志类型文件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f exmaple.log //这个命令会自动显示新增内容，屏幕只显示10行内容的（可设置）。</span><br></pre></td></tr></table></figure>
+<h3 id="19-使用超级管理员身份执行命令"><a href="#19-使用超级管理员身份执行命令" class="headerlink" title="19.使用超级管理员身份执行命令"></a>19.使用超级管理员身份执行命令</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm a.txt 使用管理员身份删除文件</span><br></pre></td></tr></table></figure>
+<h3 id="20-查看端口占用情况"><a href="#20-查看端口占用情况" class="headerlink" title="20.查看端口占用情况"></a>20.查看端口占用情况</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -tln | grep 8080 查看端口8080的使用情况</span><br></pre></td></tr></table></figure>
+<h3 id="21-查看端口属于哪个程序"><a href="#21-查看端口属于哪个程序" class="headerlink" title="21.查看端口属于哪个程序"></a>21.查看端口属于哪个程序</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :8080</span><br></pre></td></tr></table></figure>
+<h3 id="22-查看进程"><a href="#22-查看进程" class="headerlink" title="22.查看进程"></a>22.查看进程</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ps aux|grep java 查看java进程</span><br><span class="line"></span><br><span class="line">ps aux 查看所有进程</span><br></pre></td></tr></table></figure>
+<h3 id="23-文件下载"><a href="#23-文件下载" class="headerlink" title="23. 文件下载"></a>23. 文件下载</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://file.tgz</span><br><span class="line"></span><br><span class="line">curl http://file.tgz</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.865Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/05/25/linux/" target="_blank" rel="external">http://lj360560179.github.io/2017/05/25/linux/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/05/25/linux/&title=《【转】常用Linux命令》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/05/25/linux/&title=《【转】常用Linux命令》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/05/25/linux/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【转】常用Linux命令》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/05/25/linux/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/05/25/linux/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/01/多线程基础/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">多线程基础</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/25/git/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">github 上传</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="linux" data-title="【转】常用Linux命令" data-url="http://lj360560179.github.io/2017/05/25/linux/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/05/25/linux/&title=《【转】常用Linux命令》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/05/25/linux/&title=《【转】常用Linux命令》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/05/25/linux/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【转】常用Linux命令》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/05/25/linux/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/05/25/linux/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3awY7DIAxF0f7/TzNSt1XJfYaOhLmsqiRNcrKwbOzXC6/xXt+OjI/FryHP2rZkyJBxLGNM1+c15F8pmzz34UPIkCHjAsY88KWvmyLnz0VBWYYMGTJAujYP0DwFlCFDhoxdjDTszqvO+REZMmTI4MXkPJjy6zn7J7W4DBkyDmSkjYH//P3D/oYMGTIOYYxw8eBInrXtrWTIkNGawUclVhoJ5F884QsyXBkyZDRikNKUnOWYWpsh3nSTIUNGI8Z846yWwNVIaQIqQ4aM2xhpG2CloE3bCSh9lCFDRlNGWr6mm/jpJygWsTJkyLiAwbfj05cjm3EbUkMZMmRczCABt3ak1nL4ek8ZMmRcwKiVr7wEraWbQdksQ4aM1oyV4QlSiPI7cPzXszJkyGjK4IMUtY25XeNfD0MeMmTIuIzBy8iHW4Mj6/eUIUPGPYzaoAMPvjwpTNucMmTIuIexEv7IC6UpZtqWkCFDRm/G+mgXD9Zpuknug3YNZciQcTijlvYNsPgQRtqQCBoDMmTIaMdYGZhIE7v0iQ+tUBkyZLRm8BRwV0sgrT3jVqgMGTLaMUa40vA6v543Ax5CswwZMloz0jBHfqeNzJRKNvJkyJDRj5GOVpAW5vzKle8tQ4aMmxlpECShNm0wpKEfnZAhQ8ZlDN6SXGGns14yZMiQURuw4Edq7c+l1FCGDBnHMmpFLC8yV1qYKKGUIUNGa8auxgB5xVqQ3QCQIUPGqYw/o3qjidnaKOEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

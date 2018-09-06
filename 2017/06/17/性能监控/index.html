@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>jvm常用命令 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java,jvm">
+    <meta name="description" content="常用命令系统性能监控 确定系统运行的整体状态，基本定位问题所在Java自带的工具 查看Java程序运行细节，进一步定位问题  系统性能监控 linuxuptime                                                                                                           连接数 每一个终端算一个">
+<meta name="keywords" content="java,jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm常用命令">
+<meta property="og:url" content="http://lj360560179.github.io/2017/06/17/性能监控/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="常用命令系统性能监控 确定系统运行的整体状态，基本定位问题所在Java自带的工具 查看Java程序运行细节，进一步定位问题  系统性能监控 linuxuptime                                                                                                           连接数 每一个终端算一个">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/xn1.png">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jvm常用命令">
+<meta name="twitter:description" content="常用命令系统性能监控 确定系统运行的整体状态，基本定位问题所在Java自带的工具 查看Java程序运行细节，进一步定位问题  系统性能监控 linuxuptime                                                                                                           连接数 每一个终端算一个">
+<meta name="twitter:image" content="http://ni484sha.com/images/xn1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">jvm常用命令</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">jvm常用命令</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-16T16:34:14.000Z" itemprop="datePublished" class="page-time">
+  2017-06-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">1.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#系统性能监控"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">系统性能监控</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Java自带的工具"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">Java自带的工具</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#系统性能监控-linux"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">系统性能监控 linux</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#uptime"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">uptime</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#连接数"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">连接数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1，5，15分钟内的系统平均负载"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">1，5，15分钟内的系统平均负载</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#top"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">top</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#vmstat"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">vmstat</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#pidstat"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">pidstat</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Java自带的工具-1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Java自带的工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#jps"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">jps</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#jinfo"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">jinfo</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#jmap"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">jmap</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Dump堆"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">Dump堆</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#jstack"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">jstack</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内存溢出-OOM-的原因"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">内存溢出(OOM)的原因</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#在JVM中，有哪些内存区间？"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">在JVM中，有哪些内存区间？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#堆溢出"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">堆溢出</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#永久区"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">永久区</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Java栈溢出"><span class="post-toc-number">1.3.4.</span> <span class="post-toc-text">Java栈溢出</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#直接内存溢出"><span class="post-toc-number">1.3.5.</span> <span class="post-toc-text">直接内存溢出</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-性能监控"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">jvm常用命令</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-17 00:34:14" datetime="2017-06-16T16:34:14.000Z"  itemprop="datePublished">2017-06-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h5 id="系统性能监控"><a href="#系统性能监控" class="headerlink" title="系统性能监控"></a>系统性能监控</h5><ul>
+<li>确定系统运行的整体状态，基本定位问题所在<h5 id="Java自带的工具"><a href="#Java自带的工具" class="headerlink" title="Java自带的工具"></a>Java自带的工具</h5></li>
+<li>查看Java程序运行细节，进一步定位问题</li>
+</ul>
+<h4 id="系统性能监控-linux"><a href="#系统性能监控-linux" class="headerlink" title="系统性能监控 linux"></a>系统性能监控 linux</h4><h5 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h5><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/xn1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h5 id="连接数"><a href="#连接数" class="headerlink" title="连接数"></a>连接数</h5><ul>
+<li>每一个终端算一个连接<h5 id="1，5，15分钟内的系统平均负载"><a href="#1，5，15分钟内的系统平均负载" class="headerlink" title="1，5，15分钟内的系统平均负载"></a>1，5，15分钟内的系统平均负载</h5></li>
+<li>运行队列中的平均进程数</li>
+</ul>
+<h5 id="top"><a href="#top" class="headerlink" title="top"></a>top</h5><h5 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h5><ul>
+<li>可以统计系统的CPU，内存，swap，io等情况</li>
+</ul>
+<h5 id="pidstat"><a href="#pidstat" class="headerlink" title="pidstat"></a>pidstat</h5><ul>
+<li>细致观察进程</li>
+<li>需要安装( sudo apt-get install sysstat)</li>
+<li>监控CPU</li>
+<li>监控IO</li>
+<li>监控内存</li>
+</ul>
+<p>-p 指定进程 –u 监控CPU 每秒采样 一共3次</p>
+<h4 id="Java自带的工具-1"><a href="#Java自带的工具-1" class="headerlink" title="Java自带的工具"></a>Java自带的工具</h4><h5 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h5><ul>
+<li>列出java进程，类似于ps命令.</li>
+<li>参数-q可以指定jps只输出进程ID ，不输出类的短名称.</li>
+<li>参数-m可以用于输出传递给Java进程（主函数）的参数.</li>
+<li>参数-l可以用于输出主函数的完整路径.</li>
+<li>参数-v可以显示传递给JVM的参数.</li>
+</ul>
+<h5 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h5><ul>
+<li>可以用来查看正在运行的Java应用程序的扩展参数，甚至支持在运行时，修改部分参数</li>
+<li>-flag <name>：打印指定JVM的参数值</name></li>
+<li>-flag [+|-]<name>：设置指定JVM参数的布尔值</name></li>
+<li>-flag <name>=<value>：设置指定JVM参数的值</value></name></li>
+</ul>
+<h5 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h5><ul>
+<li>生成Java应用程序的堆快照和对象的统计信息</li>
+<li>jmap -histo 2972 &gt;c:\s.txt</li>
+</ul>
+<h5 id="Dump堆"><a href="#Dump堆" class="headerlink" title="Dump堆"></a>Dump堆</h5><ul>
+<li>jmap -dump:format=b,file=c:\heap.hprof 2972</li>
+</ul>
+<h5 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h5><ul>
+<li>打印线程dump</li>
+<li>-l 打印锁信息</li>
+<li>-m 打印java和native的帧信息</li>
+<li>-F 强制dump，当jstack没有响应时使用</li>
+</ul>
+<h4 id="内存溢出-OOM-的原因"><a href="#内存溢出-OOM-的原因" class="headerlink" title="内存溢出(OOM)的原因"></a>内存溢出(OOM)的原因</h4><h5 id="在JVM中，有哪些内存区间？"><a href="#在JVM中，有哪些内存区间？" class="headerlink" title="在JVM中，有哪些内存区间？"></a>在JVM中，有哪些内存区间？</h5><ul>
+<li>堆</li>
+<li>永久区</li>
+<li>线程栈</li>
+<li>直接内存</li>
+</ul>
+<h5 id="堆溢出"><a href="#堆溢出" class="headerlink" title="堆溢出"></a>堆溢出</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">    ArrayList&lt;<span class="keyword">byte</span>[]&gt; list=<span class="keyword">new</span> ArrayList&lt;<span class="keyword">byte</span>[]&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1024</span>;i++)&#123;</span><br><span class="line">        list.add(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>*<span class="number">1024</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//占用大量的堆空间，直接溢出</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space</span><br><span class="line">at geym.jvm.ch8.oom.SimpleHeapOOM.main(SimpleHeapOOM.java:14)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决方法：增大堆空间，及时释放内存</p>
+</blockquote>
+<h5 id="永久区"><a href="#永久区" class="headerlink" title="永久区"></a>永久区</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//生成大量的类</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100000</span>;i++)&#123;</span><br><span class="line">        CglibBean bean = <span class="keyword">new</span> CglibBean(<span class="string">"geym.jvm.ch3.perm.bean"</span>+i,<span class="keyword">new</span> HashMap());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>增大Perm区、允许Class回收</p>
+</blockquote>
+<h5 id="Java栈溢出"><a href="#Java栈溢出" class="headerlink" title="Java栈溢出"></a>Java栈溢出</h5><ul>
+<li>这里的栈溢出指，在创建线程的时候，需要为线程分配栈空间，这个栈空间是向操作系统请求的，如果操作系统无法给出足够的空间，就会抛出OOM</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SleepThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">10000000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> SleepThread(),<span class="string">"Thread"</span>+i).start();</span><br><span class="line">        System.out.println(<span class="string">"Thread"</span>+i+<span class="string">" created"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xmx1g -Xss1m</span><br></pre></td></tr></table></figure>
+<pre><code class="s">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: 
+unable to create new native thread
+</code></pre>
+<blockquote>
+<p>解决方法：<br>减少堆内存<br>减少线程栈大小</p>
+</blockquote>
+<h5 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h5><ul>
+<li>ByteBuffer.allocateDirect()无法从操作系统获得足够的空间</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.871Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/06/17/性能监控/" target="_blank" rel="external">http://lj360560179.github.io/2017/06/17/性能监控/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/17/性能监控/&title=《jvm常用命令》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/17/性能监控/&title=《jvm常用命令》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/17/性能监控/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《jvm常用命令》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/17/性能监控/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/17/性能监控/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/25/mq使用场景/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MQ使用场景</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/14/GC参数/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">GC相关</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="性能监控" data-title="jvm常用命令" data-url="http://lj360560179.github.io/2017/06/17/性能监控/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/17/性能监控/&title=《jvm常用命令》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/17/性能监控/&title=《jvm常用命令》 — 切切切切切切图的&source=切图仔" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/17/性能监控/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《jvm常用命令》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/17/性能监控/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/17/性能监控/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aQW7DMAwEwPz/0+m1h8bepZwClkenIkkjjguwIqnXK17vXyt599Mr+V6vbywMDIzbMt6H65hx/Fs5Ndn3ZBcMDIwHMI4TX/uZ9XDzfTEwMDDy41qeHBMSBgYGxgqjOK59+P7jVzAwMDBWitgcP/vOpUeGgYGxNaNt1v/nz1+Zb2BgYNyK8S5XmxyTsNphwB+7YGBgbM2YtdLaINYHpVE8GBgYmzJWhpQtL7/+lV/yuGDWioGBcStGfoxbKYPb4UEynMDAwNibMWv0z1Lk7DLHsPWGgYGxNaMdEF57gTWJ5ASPgYGxHaP90jzEWWF88V8AAwNjC0ZbZM4a+nlYs1IWAwNjb8YsmbaJNW/h5Y/p450RDAyMrRn5cXB2jFspa6PbIhgYGFszVgrIOjmORhRR4YqBgfEAxlUbJA/i4sYcBgbG1oxZo22WfNcfwcljxcDAeAxjpQTNr26sDxXqihwDA2MjRgvIg86vnbWDTAwMjOcwZqXsu1x5C6/9JAYGxhMYs4Z+Hmh75QIDAwPjmJEPHZPjYJ6aZ+keAwNjb8bsYDdrwCX42ZgTAwNjb0ZbuM7ScZKCZ8fEGoaBgXFbxqxB1o4eZ0UvBgYGRrJl3faKU+3sP8DJZQsMDAyMcpBwWYhtHw4DA+PxjDYd15OKsi2IgYHxHEZSxM4ueLUtttlxEwMDY2/GLDnmQbeDz6RVNxxqYmBg3I/xAx7SapikudvBAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

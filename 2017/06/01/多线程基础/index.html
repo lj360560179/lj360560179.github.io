@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>多线程基础 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="多线程基础">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程基础">
+<meta property="og:url" content="http://lj360560179.github.io/2017/06/01/多线程基础/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="多线程基础">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/threadstate.png">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.869Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程基础">
+<meta name="twitter:description" content="多线程基础">
+<meta name="twitter:image" content="http://ni484sha.com/images/threadstate.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">多线程基础</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">多线程基础</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-31T16:34:14.000Z" itemprop="datePublished" class="page-time">
+  2017-06-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多线程基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">多线程基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-线程状态"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.线程状态</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-实现并启动线程有两种方法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1.实现并启动线程有两种方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Thread的-start-和-run"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">2.Thread的 start() 和 run()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-stop-暴力终止线程。"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">3.stop() 暴力终止线程。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-中断线程"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">4.中断线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-sleep"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">4.sleep</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-挂起（suspend）和继续执行（resume）线程-不推荐使用"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">5.挂起（suspend）和继续执行（resume）线程(不推荐使用)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-等待线程结束（join）和谦让-yeild"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">6.等待线程结束（join）和谦让(yeild)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-守护线程"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">7.守护线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-线程优先级"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">8.线程优先级</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-基本的线程同步操作"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">9.基本的线程同步操作</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-多线程基础"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">多线程基础</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-01 00:34:14" datetime="2017-05-31T16:34:14.000Z"  itemprop="datePublished">2017-06-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/java/">java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="多线程基础"><a href="#多线程基础" class="headerlink" title="多线程基础"></a>多线程基础</h2><a id="more"></a>
+<h3 id="1-线程状态"><a href="#1-线程状态" class="headerlink" title="1.线程状态"></a>1.线程状态</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/threadstate.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<ul>
+<li>新建(new)：新创建了一个线程对象。</li>
+<li>可运行(runnable)：线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。</li>
+<li>运行(running)：可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。</li>
+<li>阻塞(block)：阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种： <ul>
+<li>等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。</li>
+<li>同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。</li>
+<li>其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。</li>
+</ul>
+</li>
+<li>死亡(dead)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。</li>
+</ul>
+<h3 id="1-实现并启动线程有两种方法"><a href="#1-实现并启动线程有两种方法" class="headerlink" title="1.实现并启动线程有两种方法"></a>1.实现并启动线程有两种方法</h3><blockquote>
+<p>1、写一个类继承自Thread类，重写run方法。用start方法启动线程<br>2、写一个类实现Runnable接口，实现run方法。用new Thread(Runnable target).start()方法来启动</p>
+</blockquote>
+<h3 id="2-Thread的-start-和-run"><a href="#2-Thread的-start-和-run" class="headerlink" title="2.Thread的 start() 和 run()"></a>2.Thread的 start() 和 run()</h3><blockquote>
+<p>1、用start方法来启动线程，真正实现了多线程运行，这时无需等待run方法体代码执行完毕而直接继续执行下面的代码。通过调用Thread类的start()方法来启动一个线程，这时此线程处于就绪（可运行）状态，并没有运行，一旦得到cpu时间片，就开始执行run()方法，这里方法run()称为线程体，它包含了要执行的这个线程的内容，Run方法运行结束，此线程随即终止。<br>2、run()方法只是类的一个普通方法而已，如果直接调用Run方法，程序中依然只有主线程这一个线程，其程序执行路径还是只有一条，还是要顺序执行，还是要等待run方法体执行完毕后才可继续执行下面的代码，这样就没有达到写线程的目的。<br>3、调用start方法方可启动线程，而run方法只是thread的一个普通方法调用，还是在主线程里执行。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                test();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        t.start();</span><br><span class="line">        System.out.print(<span class="string">"111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.print(<span class="string">"222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出111222</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                test();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        t.run();</span><br><span class="line">        System.out.print(<span class="string">"111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.print(<span class="string">"222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出222111</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过以上两个程序实例，可以很容易的区分出start()方法和run()方法的区别:<br>t.start(); 该行代码相当于是启动线程，<br>t.run(); 该行代码相当于是使用t这个类中的run方法而已.</p>
+</blockquote>
+<h3 id="3-stop-暴力终止线程。"><a href="#3-stop-暴力终止线程。" class="headerlink" title="3.stop() 暴力终止线程。"></a>3.stop() 暴力终止线程。</h3><blockquote>
+<p>Thread.stop() 不推荐使用。它会释放所有monitor</p>
+</blockquote>
+<h3 id="4-中断线程"><a href="#4-中断线程" class="headerlink" title="4.中断线程"></a>4.中断线程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Thread.interrupt() <span class="comment">// 中断线程</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> Thread.isInterrupted() <span class="comment">// 判断是否被中断</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> Thread.interrupted() <span class="comment">// 判断是否被中断，并清除当前中断状态</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        Thread.yield();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">t1.interrupt();</span><br></pre></td></tr></table></figure>
+<p>t1.interrupt()后并不会终止run方法的循环。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">            System.out.println(<span class="string">"Interruted!"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.yield();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">t1.interrupt();</span><br></pre></td></tr></table></figure></p>
+<p>优雅的方法应在操作数据前进行判断是否终止线程，如果已经终止则跳出循环。</p>
+<h3 id="4-sleep"><a href="#4-sleep" class="headerlink" title="4.sleep"></a>4.sleep</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Thread.currentThread().isInterrupted())&#123;</span><br><span class="line">            System.out.println(<span class="string">"Interruted!"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Interruted When Sleep"</span>);</span><br><span class="line">            <span class="comment">//设置中断状态，抛出异常后会清除中断标记位</span></span><br><span class="line">            Thread.currentThread().interrupt();</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.yield();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-挂起（suspend）和继续执行（resume）线程-不推荐使用"><a href="#5-挂起（suspend）和继续执行（resume）线程-不推荐使用" class="headerlink" title="5.挂起（suspend）和继续执行（resume）线程(不推荐使用)"></a>5.挂起（suspend）和继续执行（resume）线程(不推荐使用)</h3><blockquote>
+<p>suspend()不会释放锁<br>如果加锁发生在resume()之前 ，则死锁发生</p>
+</blockquote>
+<h3 id="6-等待线程结束（join）和谦让-yeild"><a href="#6-等待线程结束（join）和谦让-yeild" class="headerlink" title="6.等待线程结束（join）和谦让(yeild)"></a>6.等待线程结束（join）和谦让(yeild)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">join</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">join</span><span class="params">(<span class="keyword">long</span> millis)</span> <span class="keyword">throws</span> InterruptedException</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-守护线程"><a href="#7-守护线程" class="headerlink" title="7.守护线程"></a>7.守护线程</h3><blockquote>
+<p>在后台默默地完成一些系统性的服务，比如垃圾回收线程、JIT线程就可以理解为守护线程<br>当一个Java应用内，只有守护线程时，Java虚拟机就会自然退出</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread t=<span class="keyword">new</span> DaemonT();</span><br><span class="line">t.setDaemon(<span class="keyword">true</span>);<span class="comment">//设置为守护线程，必须在start()之前设置</span></span><br><span class="line">t.start();</span><br></pre></td></tr></table></figure>
+<h3 id="8-线程优先级"><a href="#8-线程优先级" class="headerlink" title="8.线程优先级"></a>8.线程优先级</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread t=<span class="keyword">new</span> Thread();</span><br><span class="line">t.setPriority(***) <span class="comment">//设置优先级的方法</span></span><br><span class="line">t.start();</span><br></pre></td></tr></table></figure>
+<h3 id="9-基本的线程同步操作"><a href="#9-基本的线程同步操作" class="headerlink" title="9.基本的线程同步操作"></a>9.基本的线程同步操作</h3><blockquote>
+<p>1、synchronized<br>– 指定加锁对象：对给定对象加锁，进入同步代码前要获得给定对象的锁。<br>– 直接作用于实例方法：相当于对当前实例加锁，进入同步代码前要获得当前实例的锁。<br>– 直接作用于静态方法：相当于对当前类加锁，进入同步代码前要获得当前类的锁。<br>2、Object.wait() Obejct.notify()</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">T1</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">            System.out.println(System.currentTimeMillis()+<span class="string">":T1 start! "</span>);</span><br><span class="line">             <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(System.currentTimeMillis()</span><br><span class="line">                +<span class="string">":T1 wait for object "</span>);</span><br><span class="line">                object.wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        System.out.println(System.currentTimeMillis()+<span class="string">":T1 end!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">T2</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (object) &#123;</span><br><span class="line">                System.out.println(System.currentTimeMillis()</span><br><span class="line">                +<span class="string">":T2 start! notify one thread"</span>);</span><br><span class="line">                object.notify();</span><br><span class="line">                System.out.println(System.currentTimeMillis()+<span class="string">":T2 end!"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>synchronized (object)必须拿到锁才可以wait()、notify()，<br>object.notify()后不会马上执行T1，需要等到object释放锁后才会继续执行。则上输出为：<br>T1 start!<br>T1 wait for object<br>T2 start! notify one thread<br>T2 end!<br>T1 end!//sleep(2000)后才会输出</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.869Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/06/01/多线程基础/" target="_blank" rel="external">http://lj360560179.github.io/2017/06/01/多线程基础/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/01/多线程基础/&title=《多线程基础》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/01/多线程基础/&title=《多线程基础》 — 切切切切切切图的&source=多线程基础" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/01/多线程基础/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《多线程基础》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/01/多线程基础/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/01/多线程基础/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/02/并发工具类/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">并发工具类</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/25/linux/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【转】常用Linux命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="多线程基础" data-title="多线程基础" data-url="http://lj360560179.github.io/2017/06/01/多线程基础/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2017/06/01/多线程基础/&title=《多线程基础》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2017/06/01/多线程基础/&title=《多线程基础》 — 切切切切切切图的&source=多线程基础" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2017/06/01/多线程基础/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《多线程基础》 — 切切切切切切图的&url=http://lj360560179.github.io/2017/06/01/多线程基础/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2017/06/01/多线程基础/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aQZaDQAgFwNz/0pkDZGI+oAuxepWF0S7zHqGB1yte78OVX/95zbfvvq5YGBgYt2UkW6xu5fgpvef+eH0YGBgPYBwHvjw4HoPzVQ7KGBgYGIehNn98TsLAwMCYMI4/JwllkkRiYGBg9A6xSSktSRaT9PHCszgGBsYNGZMgePXnS/obGBgYt2JMSmBntROqd/7nWRgYGKsZeYDL07LqcbeX9mFgYDyTkQfH3kbz8a/mkAcGBsZqxmSEq/cieq+g3HLAwMBYwTj3AflwRj7MUQisGBgYSxlJdT3ZSrUAN0krf7QQMDAw1jHyo2YvyPYC/Qm/AAYGxjpGvum84NVrJDRTWAwMjNWMvLjWuzIH58W+qIWJgYGxlNFLFqtbmeO/7g0DA2MpY14UmxxNqyG4PLOGgYGxgtELhYVYPr5/4dVgYGA8gFEdd6g2OCd3iEIzBgbGUkYvKZzgrxjvwMDA2M2obqtaIOuV+KvFOwwMjCcw5sW1PLBWE8TCHjAwMB7JmMOS5G/SosDAwMCYHE2TlkA+5NqcGcHAwFjBeBdXVPA6qeXZPH9jYGCsY+QrKdznQ6vzQ2w1TGNgYNydkQfZvFVQTQqro2MYGBjPZFSPo3mrshqmqyMaGBgYGHkClyd/vftEPgwMDIw4RObXVMtzJ/9vYGBg3IoxaQbkB+BqcllIKDEwMFYzqnlXMipRDco5Y9TUxMDAuB/jD7O50T9xtMSoAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

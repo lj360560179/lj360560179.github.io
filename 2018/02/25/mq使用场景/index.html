@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>MQ使用场景 | 切切切切切切图的 | \(•ิ_•ิ\) (/•ิ_•ิ)/</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java">
+    <meta name="description" content="简单记录下消息队列的使用场景，以及优缺点还有使用中需要注意的问题。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MQ使用场景">
+<meta property="og:url" content="http://lj360560179.github.io/2018/02/25/mq使用场景/index.html">
+<meta property="og:site_name" content="切切切切切切图的">
+<meta property="og:description" content="简单记录下消息队列的使用场景，以及优缺点还有使用中需要注意的问题。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ni484sha.com/images/MQ1.png">
+<meta property="og:image" content="http://ni484sha.com/images/MQ2.png">
+<meta property="og:image" content="http://ni484sha.com/images/MQ3.png">
+<meta property="og:image" content="http://ni484sha.com/images/MQ4.png">
+<meta property="og:image" content="http://ni484sha.com/images/MQ5.png">
+<meta property="og:image" content="http://ni484sha.com/images/MQ6.png">
+<meta property="og:updated_time" content="2018-09-06T09:35:14.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MQ使用场景">
+<meta name="twitter:description" content="简单记录下消息队列的使用场景，以及优缺点还有使用中需要注意的问题。">
+<meta name="twitter:image" content="http://ni484sha.com/images/MQ1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="切切切切切切图的" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">顶顶</h5>
+          <a href="mailto:360560179@qq.com" title="360560179@qq.com" class="mail">360560179@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/lj360560179" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://wpa.qq.com/msgrd?v=3&uin=360560179&site=qq&menu=yes" target="_blank" >
+                <i class="icon icon-lg icon-qq"></i>
+                Qq
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MQ使用场景</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MQ使用场景</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-25T07:44:14.000Z" itemprop="datePublished" class="page-time">
+  2018-02-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见MQ对比"><span class="post-toc-number">1.</span> <span class="post-toc-text">常见MQ对比</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MQ使用场景"><span class="post-toc-number">2.</span> <span class="post-toc-text">MQ使用场景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解耦"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">解耦</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#异步"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">异步</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#削峰"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">削峰</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MQ产生的问题"><span class="post-toc-number">3.</span> <span class="post-toc-text">MQ产生的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#系统复杂度"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">系统复杂度</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#系统可用性"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">系统可用性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重复数据"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">重复数据</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#消息丢失"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">消息丢失</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#消息堆积"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">消息堆积</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#按顺序执行"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">按顺序执行</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-mq使用场景"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MQ使用场景</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-25 15:44:14" datetime="2018-02-25T07:44:14.000Z"  itemprop="datePublished">2018-02-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>简单记录下消息队列的使用场景，以及优缺点还有使用中需要注意的问题。</p>
+<a id="more"></a>
+<h3 id="常见MQ对比"><a href="#常见MQ对比" class="headerlink" title="常见MQ对比"></a>常见MQ对比</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/MQ1.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="MQ使用场景"><a href="#MQ使用场景" class="headerlink" title="MQ使用场景"></a>MQ使用场景</h3><h4 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h4><p>分布式系统时经常会有某个系统调用其他系统的情况，如下图，用户下了一个订单，会在订单系统生成记录，然后用户系统要添加积分，商品系统需要修改销量库存等一系列操作，在没引入消息队列前，各系统间耦合严重，每当修改需求，其他系统不需要订单系统的数据，或者又有新的系统需要订单系统的数据，则每次都要修改订单系统的代码。引入消息队列后，其他系统只需要订阅队列，订单系统则可以不管其他系统如何操作，从而使各系统解耦。<br><img src="http://ni484sha.com/images/MQ2.png" alt=""></p>
+<h4 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h4><p>在没有引入MQ前，因为是同步的，所以用户一个请求需要等待所有系统调用成功后才能返回结果，引入MQ后，用户完成下订单操作后就可以直接返回，不用等待其他系统的操作，降低了该请求的耗时。<br><img src="http://ni484sha.com/images/MQ3.png" alt=""></p>
+<h4 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h4><p>当并发量很大的时候，如果程序直接写数据库，数据库会宕机，这时候引入MQ来进行削峰，先把请求写入MQ中，当高峰期后在消费队列中的数据，以防数据库宕机。<br><img src="http://ni484sha.com/images/MQ4.png" alt=""></p>
+<h3 id="MQ产生的问题"><a href="#MQ产生的问题" class="headerlink" title="MQ产生的问题"></a>MQ产生的问题</h3><h4 id="系统复杂度"><a href="#系统复杂度" class="headerlink" title="系统复杂度"></a>系统复杂度</h4><p>引入MQ，会使系统复杂度大大提高，要额外的维护MQ，而且一般生产环境不会只部署一个MQ服务，为了可用性，都会部署多台MQ做集群。</p>
+<h4 id="系统可用性"><a href="#系统可用性" class="headerlink" title="系统可用性"></a>系统可用性</h4><p>引入MQ后，如果MQ服务挂了，那整个系统就挂了，所以为了防止某个MQ宕机导致系统挂掉，一般都会做MQ集群，主流的MQ都提供了集群部署模式。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/MQ5.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="重复数据"><a href="#重复数据" class="headerlink" title="重复数据"></a>重复数据</h4><p>一般MQ都会存在出现重复数据的情况，所以要保证系统不重复消费数据，一般都要在消费方操作前查询该消息是否被消费。并且把自动提交已消费改成手动提交，例如kafka自动提交offset改成手动提交，在消息消费成功后手动提交。</p>
+<h4 id="消息丢失"><a href="#消息丢失" class="headerlink" title="消息丢失"></a>消息丢失</h4><p>如图，生产者P向队列中生产消息，C1和C2消费队列中的消息，默认情况下，MQ会平均的分发消费给C1C2（Round-robin dispatching），假设一个任务的执行时间非常长，在执行过程中，客户端挂了（连接断开），那么，该客户端正在处理且未完成的消息，以及分配给它还没来得及执行的消息，都将丢失。因为默认情况下，MQ分发完消息后，就会从内存中把消息删除掉。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ni484sha.com/images/MQ6.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>通常的解决办法是使用消息确认机制。基本每个MQ都用类似的机制配置。</p>
+<h4 id="消息堆积"><a href="#消息堆积" class="headerlink" title="消息堆积"></a>消息堆积</h4><p>如果消费方出现了BUG，消息就会堆积在消息队列中，堆积到消息队列承载的极限，准备挂的时候，通常此时就应该增加机器，然后把原来队列中的数据分发到临时的队列中，然后添加多个消费方来快速消费数据。</p>
+<h4 id="按顺序执行"><a href="#按顺序执行" class="headerlink" title="按顺序执行"></a>按顺序执行</h4><p>有时候消息需要按顺序消费，可以以某个字段来分发到同一个队列中。消费方如果需要使用多线程来消费，则可以新建临时的内存队列，同理以某个字段分组放到同一个内存队列中消费</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <!-- <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-09-06T09:35:14.865Z" itemprop="dateUpdated">2018-09-06 17:35:14</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/02/25/mq使用场景/" target="_blank" rel="external">http://lj360560179.github.io/2018/02/25/mq使用场景/</a>
+        
+    </div> -->
+    <footer>
+        <a href="http://lj360560179.github.io">
+            <img src="/img/avatar.jpg" alt="顶顶">
+            顶顶
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2018/02/25/mq使用场景/&title=《MQ使用场景》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2018/02/25/mq使用场景/&title=《MQ使用场景》 — 切切切切切切图的&source=简单记录下消息队列的使用场景，以及优缺点还有使用中需要注意的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2018/02/25/mq使用场景/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MQ使用场景》 — 切切切切切切图的&url=http://lj360560179.github.io/2018/02/25/mq使用场景/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2018/02/25/mq使用场景/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/25/docker搭建elk/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Docker搭建ELK</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/17/性能监控/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">jvm常用命令</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="mq使用场景" data-title="MQ使用场景" data-url="http://lj360560179.github.io/2018/02/25/mq使用场景/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'ni484sha', theme: 'none'};
+lazyScripts.push('//unpkg.com/hexo-theme-material-indigo@latest/js/embed.min.js');
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <!-- <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p> -->
+    </div>
+    <!-- <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>顶顶 &copy; 2015 - 2018</span>
+        </p>
+    </div> -->
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://lj360560179.github.io/2018/02/25/mq使用场景/&title=《MQ使用场景》 — 切切切切切切图的&pic=http://lj360560179.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://lj360560179.github.io/2018/02/25/mq使用场景/&title=《MQ使用场景》 — 切切切切切切图的&source=简单记录下消息队列的使用场景，以及优缺点还有使用中需要注意的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://lj360560179.github.io/2018/02/25/mq使用场景/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MQ使用场景》 — 切切切切切切图的&url=http://lj360560179.github.io/2018/02/25/mq使用场景/&via=http://lj360560179.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://lj360560179.github.io/2018/02/25/mq使用场景/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQW7EMAgF0Ln/pdNtpXY8H0grxX5eRZnG8usCAeb1itf1bf18/+753a/v3qzf37AwMDAey7iW693frL/Nqb39f6FiYGAcwFgHvslzAl6/j4IyBgYGRpCuRWFxuT8GBgbGvYxeUVotbjEwMDCqRWyyXbUkXjf1/qQWx8DAeCAj77r///Of3G9gYGA8inEVV16C5se6xgsDA2NvRq+VNmmc9VLG6DwYGBibMpJGWF5w5r9W09APrT0MDIytGclG6zRuErLz4Yych4GBsR+j2vrPn6tBcxTQMTAwjmHkV4nzIYm8uI14GBgYxzOq4XJ+p1r+B2FgYBzAqI6F9Rpz1dBcGPvAwMDYmlFN2npNtN6gRq8wxsDA2I+Rl6nVxn3ekqteNnwoYjEwMLZjJNeNve2a4xHjbzEwMHZlzMvI6rBFftBC0omBgbEpo9oaS64NJiOw1VCLgYFxAmOyktZYnlzmY2HJzhgYGPsx8gPNxzLKeWscmjEwME5g5KlYnizm6ePkcgIDA+M0RjWLTAJ0Hrjz58J9AgYGxqaMextt+bBF71oCAwNjb8ZVXJM2WXVQIx8Uw8DA2JvRuwbIN81bab00sQzDwMB4LKPaIJuUvpOAjoGBgdFrgeXFbR5Ye0MeGBgYGHcVq9U2XNL5x8DAwOgF3NFNRSuhxMDAOIExSe/yr/LRjXLzDgMDY2tGNThOLh3zoyTJKAYGxgGML5eCk2HeViUVAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你快回来~';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
